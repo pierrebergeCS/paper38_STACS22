@@ -1,0 +1,53 @@
+\begin{tikzpicture}
+
+% NODES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P1) at (1,4) {};
+
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P2) at (2.5,3.5) {};
+
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=red] (P3) at (4,3.1) {};
+
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=red] (P4) at (5.5,2.8) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P42) at (5.0,4.1) {};
+
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=red] (P5) at (7,2.5) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P52) at (6.5,3.8) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (v0) at (7,1.0) {};
+
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=red] (P6) at (8.5,2.8) {};
+
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P7) at (10.0,3.1) {};
+
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P8) at (11.5,3.5) {};
+
+
+% LINKS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\draw[->,dotted,line width = 1.4pt] (v0) -- (P5);
+
+\draw[<-,line width = 1.4pt] (P1) -- (P2);
+\draw[<-,line width = 1.8pt, color = blue] (P2) -- (P3);
+\draw[<-,line width = 1.4pt] (P3) -- (P4);
+\draw[<-,line width = 1.4pt] (P4) -- (P5);
+\draw[->,line width = 1.4pt] (P5) -- (P6);
+\draw[->,line width = 1.8pt, color = blue] (P6) -- (P7);
+\draw[->,line width = 1.4pt] (P7) -- (P8);
+
+\draw[->,line width = 1.8pt, color = blue] (P4) -- (P42);
+\draw[->,line width = 1.8pt, color = blue] (P5) -- (P52);
+
+% ETIQUETTES
+
+\node[scale=1.2, color = blue] at (3.3,3.6) {$E_j$};
+\node[scale=1.2, color = red] at (5.8,2.1) {$\partial H_j'$};
+
+\node[scale = 1.2] at (7.4,1.2) {$v_0$};
+\node[scale = 1.2] at (7.3,2.8) {$m$};
+\node[scale = 1.2, color = red] at (4.0,2.7) {$u_j$};
+\node[scale = 1.2, color = red] at (8.5,2.4) {$v_j$};
+\node[scale = 1.2] at (2.5,3.0) {$u_j^*$};
+\node[scale = 1.2] at (10.0,2.6) {$v_j^*$};
+
+\end{tikzpicture}

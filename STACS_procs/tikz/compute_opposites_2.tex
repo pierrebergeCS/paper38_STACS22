@@ -1,0 +1,49 @@
+\begin{tikzpicture}
+
+% NODES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=red] (P11) at (4,5) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P12) at (4,6.5) {};
+
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P21) at (6,5) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P22) at (6,6.5) {};
+
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P31) at (5.0,5.4) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P32) at (5.0,6.9) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P33) at (7.0,5.4) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P34) at (7.0,6.9) {};
+
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P41) at (3.4,5.6) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P42) at (4.4,6.0) {};
+
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P61) at (3.4,7.0) {};
+%%%%
+
+
+
+% LINKS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\draw[->,line width = 1.4pt] (P11) -- (P12);
+
+\draw[->,line width = 1.4pt] (P11) -- (P21);
+\draw[->,line width = 1.4pt] (P12) -- (P22);
+\draw[->,line width = 1.4pt] (P21) -- (P22);
+
+\draw[->,line width = 1.4pt] (P11) -- (P31);
+\draw[->,line width = 1.4pt] (P12) -- (P32);
+\draw[->,line width = 1.4pt] (P21) -- (P33);
+\draw[->,line width = 1.4pt] (P22) -- (P34);
+\draw[->,line width = 1.4pt] (P31) -- (P32);
+\draw[->,line width = 1.4pt] (P31) -- (P33);
+\draw[->,line width = 1.4pt] (P32) -- (P34);
+\draw[->,line width = 1.4pt] (P33) -- (P34);
+
+\draw[->,line width = 1.4pt] (P11) -- (P41);
+\draw[->,line width = 1.4pt] (P31) -- (P42);
+\draw[->,line width = 1.4pt] (P41) -- (P42);
+
+\draw[->,line width = 1.4pt] (P11) -- (P61);
+
+\node[color = red, scale = 1.4] at (3.7,4.7) {$u$};
+
+\end{tikzpicture}

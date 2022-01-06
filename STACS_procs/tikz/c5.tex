@@ -1,0 +1,28 @@
+\begin{tikzpicture}
+
+% NODES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P1) at (1,1) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P2) at (1,3) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P3) at (4,1) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P4) at (4,3) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P5) at (2.5,4.5) {};
+
+
+% LINKS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\draw[line width = 1.4pt] (P1) -- (P2);
+\draw[line width = 1.4pt] (P2) -- (P5);
+\draw[line width = 1.4pt] (P5) -- (P4);
+\draw[line width = 1.4pt] (P4) -- (P3);
+\draw[line width = 1.4pt] (P3) -- (P1);
+
+% ETIQUETTES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\node[scale=1.4] (E1) at (0.6,0.6) {$1$};
+\node[scale=1.4] (E2) at (0.6,3.3) {$2$};
+\node[scale=1.4] (E3) at (2.5,4.9) {$3$};
+\node[scale=1.4] (E4) at (4.4,3.3) {$4$};
+\node[scale=1.4] (E5) at (4.4,0.6) {$5$};
+
+\end{tikzpicture}

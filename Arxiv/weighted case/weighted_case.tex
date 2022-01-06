@@ -1,0 +1,30 @@
+\subsubsection{Weighted case} \label{subsubsec:weighted}
+
+The framework described above for the computation of eccentricities can be generalized to a more general kind of instance, made up of a median graph $G$ and a weight function $\alpha : V \rightarrow \mathbb{N}$. The \textit{weighted distance} $d_{\alpha}(u,v)$ is defined as the classical definition of the distance in addition with the weight of $v$: $d_{\alpha}(u,v) = d(u,v) + \alpha(v)$. Observe that the weighted distance is not symmetric anymore, as $\alpha(u)$ and $\alpha(v)$ may not be equal. The notions of shortest paths and intervals however remain the same than in the unweighted case.
+
+We naturally extend the definition of labels $\varphi(u,L)$ to their weighted version $\varphi_{\alpha}(u,L)$. Let $\varphi_{\alpha}(u,L)$ be the maximum weighted distance $d_{\alpha}(u,v)$ such that $u \in I(v_0,v)$ and $L_{u,v} = L$. Let $u^+$ be the anti-basis of the hypercube with basis $u$ and signature $L$. Either $u^+$ is the vertex $v$ maximizing $\varphi_{\alpha}(u,L)$: in this case, $\varphi_{\alpha}(u,L) = \card{L} + \alpha(v)$. Otherwise, $v \neq u^+$ and $\varphi_{\alpha}(u,L)$ can be determined with an inductive formula, as stated in Equation~\eqref{eq:induction_phi}.
+
+\[
+    \varphi_{\alpha}(u,L) = \max\limits_{\substack{L^+ ~\mbox{\scriptsize{POF outgoing from}}~ u^+ \\ \forall E_j \in L^+,~ L \cup \set{E_j} ~\mbox{\scriptsize{not POF}}}} (\card{L} + \varphi_{\alpha}(u^+,L^+)).
+\]
+
+Taking the maximum value obtained between the two cases provide us with the correct $\varphi_{\alpha}(u,L)$. One can see that $\varphi$-labelings are the key concept of the algorithm evoked by Theorem~\ref{th:simple_ecc}. Indeed, the computation of labels $\opp$ and $\psi$ depend on labels $\varphi$. 
+
+Label $\opp_{u,\alpha}(L)$ is defined as a POF $L'$ disjoint from $L$ maximizing $\varphi_{\alpha}(u,L')$. Theorem~\ref{th:compute_opp} is naturally generalized to the weighted case by considering, for the star graph $G_u$, the weights $\omega_u(L) = \varphi_{\alpha}(u,L)$ instead of $\varphi(u,L)$.
+
+Label $\psi_{\alpha}(u,R)$ is defined as the maximum distance $d_{\alpha}(u,v)$ with a vertex $v$ such that $m(u,v,v_0) \neq u$ and the anti-ladder set of $m,u$ is $R$. Let $u^-$ be the basis of hypercube with anti-basis $u$ and signature $R$. Either $m = u^-$ and the anti-ladder label can be written as $\psi_{\alpha}(u,R) = \card{R} + \varphi_{\alpha}(u^-,\opp_{u^-,C}(R))$. Otherwise, it can be expressed as in inductive formula, as stated in Equation~\eqref{eq:induction_psi}.
+
+\[
+\psi_{\alpha}(u,R) = \max\limits_{\substack{R^- ~\mbox{\scriptsize{POF ingoing to}}~ u^- \\ \forall E_j \in R, R^- \cup \set{E_j} ~\mbox{\scriptsize{not POF}}}} (\card{R} + \psi_{\alpha}(u^-,R^-))
+\]
+
+Figure~\ref{fig:weights} illustrates the weighted labels $\varphi_{\alpha}$ and $\psi_{\alpha}$. It gives a median graph, two vertices $u$ and $v$, a POF $L$ outgoing from $u$ and a POF $R$ ingoing into $v$. Some vertices $x \in V$ are indexed with their weight $\alpha(x)$. The vertices with no index have weight 0. The reader can check the values provided for the different weighted and unweighted labels.
+
+In brief, all labels $\varphi_{\alpha}$, $\opp_{u,\alpha}$, and $\psi_{\alpha}$ of a weighted median graph can be determined in $\tilde{O}(2^{2d}n)$. The \textit{weighted eccentricity} $\ecc_{\alpha}(u)$ of a vertex $u$ is naturally defined as the maximum distance $d_{\alpha}(u,v)$. Either the median $m = m(u,v,v_0)$ is $u$ and, hence, $\ecc_{\alpha}(u)$ is necessarily a label $\varphi_{\alpha}(u,L)$. Otherwise, set $\Pi(m,u)$ contains at least two elements and $d_{\alpha}(u,v)$ can be expressed as a label $\psi_{\alpha}(u,R)$. This corresponds to the weighted version of Equation~\eqref{eq:ecc_labels}. In summary, all weighted eccentricities on weighted median graphs can also be computed in time $\tilde{O}(2^{2d}n)$.
+
+\begin{figure}[t]
+\centering
+\scalebox{0.9}{\input{tikz/weights}}
+\caption{Label values: $\varphi(u,L) = 5 =d(u,v)$, $\varphi_{\alpha}(u,L) = 6$, $\psi(v,R) = 7$, $\psi_{\alpha}(v,R)= 8$.}
+\label{fig:weights}
+\end{figure}

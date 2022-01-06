@@ -1,0 +1,59 @@
+\begin{tikzpicture}
+
+% NODES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P1) at (1,4) {};
+%
+%\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P2) at (2.5,3.5) {};
+%
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P3) at (3.0,4.4) {};
+
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P4) at (5.5,2.8) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P42) at (5.0,4.1) {};
+
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P5) at (7,2.5) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P52) at (6.5,3.8) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (v0) at (7,1.0) {};
+
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P6) at (8.5,2.2) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P62) at (8.3,3.2) {};
+
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P7) at (10.0,2.7) {};
+%
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P8) at (12.0,2.9) {};
+
+
+% LINKS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\draw[->,dotted,line width = 1.4pt] (v0) -- (P5);
+
+%\draw[<-,line width = 1.4pt] (P1) -- (P2);
+%\draw[<-,line width = 1.8pt, color = blue] (P2) -- (P3);
+\draw[<-,line width = 1.4pt, dotted] (P3) -- (P42);
+\draw[<-,line width = 1.4pt,color = blue] (P4) -- (P5);
+\draw[->,line width = 1.4pt, color = green] (P5) -- (P6);
+\draw[->,line width = 1.4pt, color = purple] (P5) -- (P62);
+\draw[->,line width = 1.8pt, color = purple] (P6) -- (P7);
+\draw[->,line width = 1.8pt, color = green] (P62) -- (P7);
+\draw[->,line width = 1.4pt, dotted] (P7) -- (P8);
+
+\draw[->,line width = 1.4pt, color = red] (P4) -- (P42);
+\draw[->,line width = 1.4pt, color = red] (P5) -- (P52);
+\draw[->,line width = 1.4pt, color = blue] (P52) -- (P42);
+
+% ETIQUETTES
+
+\node[scale=1.2, color = blue] at (5.7,4.3) {$E_j$};
+\node[scale=1.2, color = red] at (4.8,3.4) {$E_i$};
+
+\node[scale=1.2, color = green] at (9.2,3.3) {$E_r$};
+\node[scale=1.2, color = purple] at (9.3,2.1) {$E_{\ell}$};
+
+\node[scale = 1.2] at (7.4,1.2) {$v_0$};
+\node[scale = 1.2] at (6.6,2.2) {$m$};
+
+\node[scale = 1.2] at (2.5,4.3) {$u$};
+\node[scale = 1.2] at (12.5,2.9) {$v$};
+
+\end{tikzpicture}

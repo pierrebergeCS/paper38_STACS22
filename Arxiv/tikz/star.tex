@@ -1,0 +1,79 @@
+\begin{tikzpicture}
+
+% NODES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P31) at (5,1) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P32) at (5,2.5) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P33) at (6,1.4) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P34) at (6,2.9) {};
+
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P41) at (7,1) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P42) at (7,2.5) {};
+
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P51) at (9,1) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P52) at (9,2.5) {};
+
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P61) at (8.0,1.4) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P62) at (8.0,2.9) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P63) at (10.0,1.4) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P64) at (10.0,2.9) {};
+
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P71) at (7.0,4.0) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P72) at (8.0,4.4) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P73) at (9.0,4.0) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P74) at (10.0,4.4) {};
+
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (v0) at (4.7,4.2) {};
+
+
+% LINKS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\draw[line width = 1pt] (P31) -- (P33);
+\draw[line width = 1pt] (P32) -- (P34);
+\draw[line width = 1pt] (P33) -- (P34);
+\draw[line width = 1pt] (P61) -- (P33);
+\draw[line width = 1pt] (P62) -- (P34);
+
+\draw[line width = 1pt] (P31) -- (P32);
+\draw[line width = 1pt] (P31) -- (P41);
+\draw[<-,line width = 1.5pt, color = red] (P32) -- (P42);
+\draw[<-,line width = 1.5pt, color = blue] (P41) -- (P42);
+
+\draw[line width = 1pt](P41) -- (P51);
+\draw[->,line width = 1.5pt, color = green] (P42) -- (P52);
+\draw[line width = 1pt] (P51) -- (P52);
+
+\draw[line width = 1pt] (P41) -- (P61);
+\draw[->,line width = 1.5pt, color = orange] (P42) -- (P62);
+\draw[line width = 1pt] (P51) -- (P63);
+\draw[line width = 1pt] (P52) -- (P64);
+\draw[line width = 1pt] (P61) -- (P62);
+\draw[line width = 1pt] (P61) -- (P63);
+\draw[line width = 1pt] (P62) -- (P64);
+\draw[line width = 1pt] (P63) -- (P64);
+
+\draw[line width = 1pt] (P62) -- (P72);
+\draw[line width = 1pt] (P64) -- (P74);
+\draw[line width = 1pt] (P72) -- (P74);
+
+\draw[->,line width = 1.5pt, color = purple] (P42) -- (P71);
+\draw[line width = 1pt] (P52) -- (P73);
+\draw[line width = 1pt] (P71) -- (P73);
+\draw[line width = 1pt] (P71) -- (P72);
+\draw[line width = 1pt] (P73) -- (P74);
+
+\draw[->,line width = 1pt, dotted] (v0) -- (P42);
+
+%etiquettes
+\node[scale=1.2] at (6.7,2.2) {$m$};
+\node[scale=1.2] at (5.1,4.3) {$v_0$};
+\node[scale=1.2] at (9.5,0.7) {$m_{ij}$};
+%\node[scale=1.2] at (4.6,0.7) {$m_{i\ell}$};
+\node[scale=1.2] at (10.4,4.7) {$m_{jhr}$};
+\node[scale=1.4, color = red] at (4.4,2.5) {$E_{\ell}$};
+\node[scale=1.4, color = purple] at (7.0,4.6) {$E_{r}$};
+\node[scale=1.4, color = blue] at (7.0,0.4) {$E_{i}$};
+\node[scale=1.4, color = green] at (9.5,2.2) {$E_{j}$};
+\node[scale=1.4, color = orange] at (8.4,3.3) {$E_{h}$};
+\end{tikzpicture}

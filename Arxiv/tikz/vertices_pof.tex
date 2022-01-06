@@ -1,0 +1,63 @@
+\begin{tikzpicture}
+
+% NODES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P11) at (1,1) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P12) at (1,2.5) {};
+
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P21) at (3,1) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P22) at (3,2.5) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P23) at (3,4) {};
+
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P31) at (5,1) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P32) at (5,2.5) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P33) at (5,4) {};
+
+
+% LINKS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\draw[line width = 1.4pt, color = green] (P11) -- (P12);
+\draw[line width = 1.4pt, color = red] (P11) -- (P21);
+\draw[line width = 1.4pt, color = red] (P12) -- (P22);
+\draw[line width = 1.4pt, color = green] (P21) -- (P22);
+
+\draw[line width = 1.4pt, color = blue] (P21) -- (P31);
+\draw[line width = 1.4pt, color = blue] (P22) -- (P32);
+\draw[line width = 1.4pt, color = green] (P31) -- (P32);
+
+\draw[line width = 1.4pt, color = orange] (P22) -- (P23);
+\draw[line width = 1.4pt, color = blue] (P23) -- (P33);
+\draw[line width = 1.4pt, color = orange] (P32) -- (P33);
+
+% ETIQUETTES
+
+\node[scale=1.2, color = red] at (2.0,2.9) {$E_1$};
+\node[scale=1.2, color = blue] at (4.0,4.4) {$E_2$};
+\node[scale=1.2, color = green] at (5.5,1.75) {$E_3$};
+\node[scale=1.2, color = orange] at (5.5,3.25) {$E_4$};
+
+\node[scale = 1.2] at (0.6,0.7) {$v_0$};
+\node[scale = 1.2] at (0.6,2.2) {$v_1$};
+\node[scale = 1.2] at (2.6,0.7) {$v_2$};
+\node[scale = 1.2] at (2.6,2.2) {$v_3$};
+\node[scale = 1.2] at (2.6,3.7) {$v_4$};
+\node[scale = 1.2] at (4.6,0.7) {$v_5$};
+\node[scale = 1.2] at (4.6,2.2) {$v_6$};
+\node[scale = 1.2] at (4.6,3.7) {$v_7$};
+
+\node[scale = 1.2] (table) at (10.5,2.0) {
+$\begin{array}{|c||c|c|c|c|}
+\hline
+\mbox{Vertex} & v_0 & v_1 & v_2 & v_3\\
+\hline
+ \mbox{POF} & \emptyset & \set{E_3} & \set{E_1} & \set{E_1,E_3}\\
+\hline
+\hline
+\mbox{Vertex} & v_4 & v_5 & v_6 & v_7\\
+\hline 
+\mbox{POF} & \set{E_4} & \set{E_2} & \set{E_2,E_3} & \set{E_2,E_4}\\
+\hline
+\end{array}$};
+
+\end{tikzpicture}

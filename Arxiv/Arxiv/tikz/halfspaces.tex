@@ -1,0 +1,67 @@
+\begin{tikzpicture}
+
+% AREAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\draw [dashed, color = white!40!blue, fill = white!92!blue] (-1.0,0.6) -- (4.4,0.6) -- (4.4,5.6) -- (-1.0,5.6) -- (-1.0,0.6) node[below left] {$H_i'$};
+\draw [dashed, color = white!40!red, fill = white!92!red] (6.3,0.6) -- (6.3,5.6) -- (4.6,5.6) -- (4.6,0.6) -- (6.3,0.6) node[below right] {$H_i'' = \partial H_i''$};
+%\draw [color = white!20!blue, fill = white!80!blue] (3.5,0.6) -- (4.4,0.6) -- (4.4,3.4) -- (3.5,3.4) -- (3.5,0.6);
+%\draw [color = white!20!red, fill = white!80!red] (5.6,0.6) -- (6.5,0.6) -- (6.5,3.4) -- (5.6,3.4) -- (5.6,0.6);
+
+% NODES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P11) at (1,1) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P12) at (1,2.5) {};
+
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=blue] (P21) at (3,1) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=blue] (P22) at (3,2.5) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=blue] (P23) at (3,4) {};
+
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=red] (P31) at (5,1) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=red] (P32) at (5,2.5) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=red] (P33) at (5,4) {};
+
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P41) at (1.3,3.8) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P42) at (1.3,5.3) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P43) at (-0.7,3.8) {};
+
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=black] (P44) at (-0.7,2.0) {};
+
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=blue] (P51) at (4.0,5.3) {};
+\node[draw, circle, minimum height=0.2cm, minimum width=0.2cm, fill=red] (P52) at (6.0,5.3) {};
+
+
+% LINKS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\draw[line width = 1.4pt] (P11) -- (P12);
+\draw[line width = 1.4pt] (P11) -- (P21);
+\draw[line width = 1.4pt] (P12) -- (P22);
+\draw[line width = 1.4pt] (P21) -- (P22);
+
+\draw[line width = 1.6pt, color = green] (P21) -- (P31);
+\draw[line width = 1.6pt, color = green] (P22) -- (P32);
+\draw[line width = 1.4pt] (P31) -- (P32);
+
+\draw[line width = 1.4pt] (P22) -- (P23);
+\draw[line width = 1.6pt, color = green] (P23) -- (P33);
+\draw[line width = 1.4pt] (P32) -- (P33);
+
+\draw[line width = 1.4pt] (P22) -- (P41);
+\draw[line width = 1.4pt] (P12) -- (P43);
+\draw[line width = 1.4pt] (P23) -- (P42);
+\draw[line width = 1.4pt] (P41) -- (P43);
+\draw[line width = 1.4pt] (P41) -- (P42);
+\draw[line width = 1.4pt] (P12) -- (P44);
+
+\draw[line width = 1.4pt] (P23) -- (P51);
+\draw[line width = 1.4pt] (P33) -- (P52);
+\draw[line width = 1.6pt, color=green] (P51) -- (P52);
+
+
+% ETIQUETTES
+
+\node[scale=1.2, color = blue] at (2.9,4.8) {$\partial H_i'$};
+%ù\node[scale=1.2, color = red] at (5.6,3.2) {$\partial H_i''$};
+\node[scale=1.4, color = green] at (4.0,0.2) {$E_i$};
+
+\end{tikzpicture}

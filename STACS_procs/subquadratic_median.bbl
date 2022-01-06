@@ -1,0 +1,223 @@
+\begin{thebibliography}{10}
+
+\bibitem{AbGrWi15}
+A.~Abboud, F.~Grandoni, and V.~V. Williams.
+\newblock Subcubic equivalences between graph centrality problems, {APSP} and
+  diameter.
+\newblock In {\em Proc. of {SODA}}, pages 1681--1697, 2015.
+
+\bibitem{AbWiWa16}
+A.~Abboud, V.~V. Williams, and J.~R. Wang.
+\newblock Approximation and fixed parameter subquadratic algorithms for radius
+  and diameter in sparse graphs.
+\newblock In {\em Proc. of {SODA}}, pages 377--391, 2016.
+
+\bibitem{AlYuZw97}
+N.~Alon, R.~Yuster, and U.~Zwick.
+\newblock Finding and counting given length cycles.
+\newblock {\em Algorithmica}, 17(3):209--223, 1997.
+
+\bibitem{Av61}
+S.~P. Avann.
+\newblock Metric ternary distributive semi-lattices.
+\newblock {\em Proc. Amer. Math. Soc.}, 12:407--414, 1961.
+
+\bibitem{Ba84}
+H.~Bandelt.
+\newblock Retracts of hypercubes.
+\newblock {\em Journal of Graph Theory}, 8(4):501--510, 1984.
+
+\bibitem{BaCh08}
+H.~Bandelt and V.~Chepoi.
+\newblock Metric graph theory and geometry: a survey.
+\newblock {\em Contemp. Math.}, 453:49--86, 2008.
+
+\bibitem{BaChDrKo06}
+H.~Bandelt, V.~Chepoi, A.~W.~M. Dress, and J.~H. Koolen.
+\newblock Combinatorics of lopsided sets.
+\newblock {\em Eur. J. Comb.}, 27(5):669--689, 2006.
+
+\bibitem{BaChEp10}
+H.~Bandelt, V.~Chepoi, and D.~Eppstein.
+\newblock Combinatorics and geometry of finite and infinite squaregraphs.
+\newblock {\em {SIAM} J. Discret. Math.}, 24(4):1399--1440, 2010.
+
+\bibitem{BaQuSaMa02}
+H.~Bandelt, L.~Quintana-Murci, A.~Salas, and V.~Macaulay.
+\newblock The fingerprint of phantom mutations in mitochondrial dna data.
+\newblock {\em Am. J. Hum. Genet.}, 71:1150--1160, 2002.
+
+\bibitem{BaFoSyRi95}
+H.~J. Bandelt, P.~Forster, B.~C. Sykes, and M.~B. Richards.
+\newblock Mitochondrial portraits of human populations using median networks.
+\newblock {\em Genetics}, 141(2):743--753, 1995.
+
+\bibitem{BaCo93}
+J.~Barth{\'{e}}lemy and J.~Constantin.
+\newblock Median graphs, parallelism and posets.
+\newblock {\em Discret. Math.}, 111(1-3):49--63, 1993.
+
+\bibitem{BaLeMo86}
+J.~Barth{\'{e}}lemy, B.~Leclerc, and B.~Monjardet.
+\newblock On the use of ordered sets in problems of comparison and consensus of
+  classifications.
+\newblock {\em Journal of Classification}, 3:187--224, 1986.
+
+\bibitem{BeChChVa20}
+L.~B{\'{e}}n{\'{e}}teau, J.~Chalopin, V.~Chepoi, and Y.~Vax{\`{e}}s.
+\newblock Medians in median graphs and their cube complexes in linear time.
+\newblock In {\em Proc. of {ICALP}}, volume 168, pages 10:1--10:17, 2020.
+
+\bibitem{BeHa21}
+P.~Berg{\'{e}} and M.~Habib.
+\newblock Diameter, radius and all eccentricities in linear time for
+  constant-dimension median graphs.
+\newblock In {\em Proc. of LAGOS}, 2021.
+
+\bibitem{BiKi47}
+G.~Birkhoff and S.~A. Kiss.
+\newblock A ternary operation in distributive lattices.
+\newblock {\em Bull. Amer. Math. Soc.}, 53:745--752, 1947.
+
+\bibitem{Br07}
+B.~Bresar.
+\newblock Characterizing almost-median graphs.
+\newblock {\em Eur. J. Comb.}, 28(3):916--920, 2007.
+
+\bibitem{Ca17}
+S.~Cabello.
+\newblock Subquadratic algorithms for the diameter and the sum of pairwise
+  distances in planar graphs.
+\newblock In {\em Proc. of {SODA}}, pages 2143--2152, 2017.
+
+\bibitem{ChLaRoScTaWi14}
+S.~Chechik, D.~H. Larkin, L.~Roditty, G.~Schoenebeck, R.~E. Tarjan, and V.~V.
+  Williams.
+\newblock Better approximation algorithms for the graph diameter.
+\newblock In {\em Proc. of {SODA}}, pages 1041--1052, 2014.
+
+\bibitem{Ch00}
+V.~Chepoi.
+\newblock Graphs of some {CAT(0)} complexes.
+\newblock {\em Adv. Appl. Math.}, 24(2):125--179, 2000.
+
+\bibitem{ChDrVa02}
+V.~Chepoi, F.~F. Dragan, and Y.~Vax{\`{e}}s.
+\newblock Center and diameter problems in plane triangulations and
+  quadrangulations.
+\newblock In {\em Proc. of {SODA}}, pages 346--355, 2002.
+
+\bibitem{ChLaRa19}
+V.~Chepoi, A.~Labourel, and S.~Ratel.
+\newblock Distance labeling schemes for cube-free median graphs.
+\newblock In {\em Proc. of MFCS}, volume 138, pages 15:1--15:14, 2019.
+
+\bibitem{Du20}
+G.~Ducoffe.
+\newblock Isometric embeddings in trees and their use in distance problems.
+\newblock In {\em Proc. of {MFCS}}, volume 202 of {\em LIPIcs}, pages
+  43:1--43:16, 2021.
+
+\bibitem{DuHaVi20}
+G.~Ducoffe, M.~Habib, and L.~Viennot.
+\newblock Diameter computation on \emph{H}-minor free graphs and graphs of
+  bounded (distance) {VC-dimension}.
+\newblock In {\em Proc. of {SODA}}, pages 1905--1922, 2020.
+
+\bibitem{Gu04}
+R.~J. Gutman.
+\newblock Reach-based routing: {A} new approach to shortest path algorithms
+  optimized for road networks.
+\newblock In {\em Proc. of ALENEX/ANALC}, pages 100--111, 2004.
+
+\bibitem{HaPaVi99}
+M.~Habib, C.~Paul, and L.~Viennot.
+\newblock Partition refinement techniques: An interesting algorithmic tool kit.
+\newblock {\em Int. J. Found. Comput. Sci.}, 10(2):147--170, 1999.
+
+\bibitem{HaImKl99}
+J.~Hagauer, W.~Imrich, and S.~Klavzar.
+\newblock Recognizing median graphs in subquadratic time.
+\newblock {\em Theor. Comput. Sci.}, 215(1-2):123--136, 1999.
+
+\bibitem{HaImKl11}
+R.~Hammack, W.~Imrich, and S.~Klavzar.
+\newblock {\em Handbook of Product Graphs, Second Edition}.
+\newblock CRC Press, Inc., 2011.
+
+\bibitem{ImKlMu99}
+W.~Imrich, S.~Klavzar, and H.~M. Mulder.
+\newblock Median graphs and triangle-free graphs.
+\newblock {\em {SIAM} J. Discret. Math.}, 12(1):111--118, 1999.
+
+\bibitem{KlKo09}
+S.~Klavzar and M.~Kovse.
+\newblock Induced cycles in crossing graphs of median graphs.
+\newblock {\em Discret. Math.}, 309(23-24):6585--6589, 2009.
+
+\bibitem{KlMu02}
+S.~Klavzar and H.~M. Mulder.
+\newblock Partial cubes and crossing graphs.
+\newblock {\em {SIAM} J. Discret. Math.}, 15(2):235--251, 2002.
+
+\bibitem{KlMuSk98}
+S.~Klavzar, H.~M. Mulder, and R.~Skrekovski.
+\newblock An {Euler}-type formula for median graphs.
+\newblock {\em Discret. Math.}, 187(1-3):255--258, 1998.
+
+\bibitem{KlSh12}
+S.~Klavzar and S.~V. Shpectorov.
+\newblock Characterizing almost-median graphs {II}.
+\newblock {\em Discret. Math.}, 312(2):462--464, 2012.
+
+\bibitem{Ko09}
+M.~Kovse.
+\newblock Complexity of phylogenetic networks: counting cubes in median graphs
+  and related problems.
+\newblock {\em Analysis of complex networks: From Biology to Linguistics},
+  pages 323--350, 2009.
+
+\bibitem{MoMuRo98}
+F.~R. McMorris, H.~M. Mulder, and F.~S. Roberts.
+\newblock The median procedure on median graphs.
+\newblock {\em Discret. Appl. Math.}, 84(1-3):165--181, 1998.
+
+\bibitem{MuSc79}
+H.~M. Mulder and A.~Schrijver.
+\newblock Median graphs and {Helly} hypergraphs.
+\newblock {\em Discret. Math.}, 25(1):41--50, 1979.
+
+\bibitem{Mu78}
+M.~Mulder.
+\newblock The structure of median graphs.
+\newblock {\em Discret. Math.}, 24(2):197--204, 1978.
+
+\bibitem{Mu80}
+M.~Mulder.
+\newblock The interval function of a graph.
+\newblock {\em Mathematical Centre Tracts, Mathematisch Centrum, Amsterdam},
+  1980.
+
+\bibitem{PaTa87}
+R.~Paige and R.~E. Tarjan.
+\newblock Three partition refinement algorithms.
+\newblock {\em {SIAM} J. Comput.}, 16(6):973--989, 1987.
+
+\bibitem{RoWi13}
+L.~Roditty and V.~V. Williams.
+\newblock Fast approximation algorithms for the diameter and radius of sparse
+  graphs.
+\newblock In {\em Proc. of {STOC}}, pages 515--524, 2013.
+
+\bibitem{SaNiWi93}
+V.~Sassone, M.~Nielsen, and G.~Winskel.
+\newblock A classification of models for concurrency.
+\newblock In {\em Proc. of {CONCUR}}, volume 715 of {\em Lecture Notes in
+  Computer Science}, pages 82--96, 1993.
+
+\bibitem{winkler1984isometric}
+Peter~M Winkler.
+\newblock Isometric embedding in products of complete graphs.
+\newblock {\em Discrete Applied Mathematics}, 7(2):221--225, 1984.
+
+\end{thebibliography}

@@ -1,0 +1,77 @@
+We further apply our partitioning scheme (see Sec.~\ref{subsec:reduction}) for turning our FPT linear-time algorithm for the weighted reach centrality within constant-dimension median graphs (Theorem~\ref{th:simple_rc}) to a subquadratic-time algorithm for arbitrary median graphs.
+
+Recall that, given a gated subgraph $H$ of a graph $G$, and any vertex $x$ of $H$, its {\em fiber} $F(x)$ equals the union of $x$ with all vertices of $G \setminus H$ of which $x$ is the gate in $H$.
+We prove in what follows that, for any two complementary halfspaces, the weighted reach centralities can be computed in both halfspaces separately -- up to a proper update of the weights of the boundary vertices.
+
+\begin{lemma}\label{lem:guigui-rc-1}
+Let $G$ be a median graph, and let $E_i$ be an arbitrary $\Theta$-class.
+For each vertex $v$ of $H_i'$, let us define $$C'(v) = \begin{cases} C(v) \ \text{if} \ v \notin \partial H_i' \\
+\max\{ d_C(v,u) \mid u \in F(v) \} \ \text{otherwise.}
+\end{cases}$$
+Then, $RC_{C}(v) = RC_{C'}(v)$ for every $v$ of $H_i'$.
+\end{lemma}
+\begin{proof}
+Let $x',y' \in V(H_i')$ be satisfying $RC_{C'}(v) = \min\{d_{C'}(v,x'),d_{C'}(v,y')\}$.
+We replace $x',y'$ by two vertices $x,y$ as follows.
+Let $x = x'$ if $x' \notin \partial H_i'$, and let $x \in F(x')$ be maximizing $d_C(x',x)$ otherwise.
+Similarly, let $y = y'$ if $y' \notin \partial H_i'$, and let $y \in F(y')$ be maximizing $d_C(y',y)$ otherwise.
+Since $u \in I(x',y')$ and $H_i'$ is gated, we also have $u \in I(x,y)$.{\color{red}\bf[NO...to fix]}
+As a result, $RC_{C'}(v) = \min\{d_{C'}(v,x'),d_{C'}(v,y')\} = \min\{d_C(v,x),d_C(v,y)\} \leq RC_C(v)$.
+
+Conversely, let $x,y \in V(G)$ be satisfying $RC_{C}(v) = \min\{d_{C}(v,x),d_{C}(v,y)\}$.
+Let $x'$ be the gate of $x$ in $H_i'$ (possibly, $x=x'$ if $x \in V(H_i')$) and in the same way let $y'$ be the gate of $y$ in $H_i'$.
+Since $H_i'$ is gated, we have $x' \in I(x,v)$ and $y' \in I(y,v)$.
+In particular, $v \in I(x',y')$ because we have $v \in I(x,y)$.
+Furthermore, $d_{C'}(v,x') = d(v,x') + C'(x') \geq d(v,x') + d_C(x',x) = d_C(v,x)$, and in the same way $d_{C'}(v,y') \geq d_C(v,y)$.
+Hence, $RC_{C}(v) = \min\{d_{C}(v,x),d_{C}(v,y)\} \leq \min\{d_{C'}(v,x'),d_{C'}(v,y')\} \leq R_{C'}(v)$.
+\end{proof}
+
+We observe that the reduction of Lemma~\ref{lem:guigui-rc-1} naturally introduces weights, even if we are just aiming at computing the unweighted reach centralities.
+
+Then, let us revisit the algorithmic framework of Lemma~\ref{lem:guigui-4}:
+
+\begin{lemma}\label{lem:guigui-rc-2}
+If there is an algorithm for computing all weighted reach centralities in an $n$-vertex median graph of dimension at most $d$ in $\tilde{O}(c^d \cdot n)$ time, then in $\tilde{O}(n^{2 - \frac 1 {1+\log{c}}})$ time we can compute all weighted reach centralities in {\em any} $n$-vertex median graph.
+\end{lemma}
+
+\begin{proof}
+As stated earlier, the general approach is the same as for Lemma~\ref{lem:guigui-4}, but we repeat some parts of it for completeness of the algorithm.
+Let $G$ be an $n$-vertex median graph.
+We compute its $\Theta$-classes $E_1,E_2,\ldots,E_q$, that takes linear time~\cite{BeChChVa20}.
+For some parameter $D$ (to be fixed later in the proof), let us assume without loss of generality $E_1,E_2,\ldots,E_p$ to be the subset of all $\Theta$-classes of cardinality $\geq D$, for some $p \leq q$. Note that we have $p \leq m/D \leq \tilde{O}(n/D)$, where $m$ is the number of edges in $G$.
+
+We reduce the problem of computing all weighted reach centralities in $G$ to the same problem on every connected component of $G \setminus (E_1 \cup E_2 \cup \ldots \cup E_p)$. 
+The main difference with Lemma~\ref{lem:guigui-4} is that here, we need to pre-process each connected component that is created after the removal of a $\Theta$-class; after that, all components can be considered separately (unlike for Lemma~\ref{lem:guigui-4}, where we needed to merge all the results obtained for these components, by dynamic programming).
+More formally, we maintain a family of convex subgraphs of $G$, of which $G$ is initially the only element, which we further refine in $p$ steps.
+At the beginning of step $i$, the elements in this family are exactly the connected components of $G \setminus \left(E_1 \cup E_2 \cup \ldots \cup E_{i-1}\right)$.
+We consider every such component $H$ sequentially.
+If $E(H) \cap E_i \neq \emptyset$ then, by Lemma~\ref{lem:guigui-2bis}, $E(H) \cap E_i$ is a $\Theta$-class of $H$.
+We replace $H$ in the family by the two corresponding halfspaces $H_i',H_i''$.  
+On our way, we update the weights for $H_i'$ (resp., for $H_i''$) according to Lemma~\ref{lem:guigui-rc-2}.
+
+Note that we can compute $H_i'$ and $H_i''$ in $\tilde{O}(|V(H)|)$ time.
+Furthermore, the weights in $H_i'$ can be updated in $O(|V(H)|)$ time if we are given as input: the gate $u^*$ of any vertex $u$ of $H_i''$ and the weighted distance $d_C(u,u^*)$. 
+Equivalently, since we can compute $d_C(u,u^*)$ from $d(u,u^*)$ in constant time (and vice-versa), we only need as input the gate $u^*$ and the distance $d(u,u^*)$ for every vertex $u$ of $H_i''$.
+This information can be computed in $\tilde{O}(|V(H)|)$ time, by using a modified BFS rooted at $H_i''$ (we refer to~\cite[Lemma 17]{ChLaRa19} for a detailed description of this standard procedure).
+We proceed similarly as above in order to update, in $\tilde{O}(|V(H)|)$ time, the weights of $H_i''$.
+Recall that, at any step $i$, the subgraphs of the family are the connected components of $G \setminus (E_1 \cup E_2 \cup \ldots E_{i-1})$, and in particular that they form a partition of $V(G)$.
+Therefore, each step takes $\tilde{\cal O}(n)$ time.
+Overall, the total time for executing all the steps is in $\tilde{O}(pn) = \tilde{O}(n^2/D)$.
+
+We are left computing the weighted reach centralities in every connected component of $G \setminus (E_1 \cup E_2 \cup \ldots \cup E_p)$ separately.
+Let $H$ be an arbitrary such component.
+We claim that we have $\mbox{dim}(H) \leq \lfloor \log{D} \rfloor + 1$.
+Indeed, by Lemma~\ref{lem:guigui-2}, every $\Theta$-class of $H$ is contained in a $\Theta$-class of $G$.
+Since we removed all $\Theta$-classes of $G$ with at least $D$ edges, the claim now follows from Lemma~\ref{lem:guigui-3}.
+In particular, we can compute the list of all weighted reach centralities for $H$ in $\tilde{O}(c^{\lfloor \log{D} \rfloor + 1}|V(H)|) = \tilde{O}(D^{\log{c}}|V(H)|)$ time.
+Therefore, the total runtime for computing the weighted reach centralities in each component is in $\tilde{O}(D^{\log{c}}n)$.
+
+The final runtime is in $\tilde{O}(n^2/D + D^{\log{c}}n)$, that is optimized for $D = n^{\frac 1 {\log{c}+1}}$.
+\end{proof}
+
+\begin{theorem}\label{thm:guigui-rc-3}
+There is an $\tilde{O}(n^{7/4})$-time algorithm for computing all (weighted) reach centralities in any $n$-vertex median graph.
+\end{theorem}
+\begin{proof}
+This result directly follows from the combination of Theorem~\ref{th:simple_rc} with Lemma~\ref{lem:guigui-rc-2} (applied for $c = 8$).
+\end{proof}

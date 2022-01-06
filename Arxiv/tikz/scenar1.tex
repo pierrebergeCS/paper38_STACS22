@@ -1,0 +1,56 @@
+\begin{tikzpicture}
+
+% TRIANGLES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Layer0
+\draw [color = black] (6.2,7.5) -- (1.0,4.5) -- (11.4,4.5) -- (6.2,7.5);
+
+%layer1
+%\draw [color = black] (2.0,5.0) -- (1.5,2.5) -- (2.5,2.5) -- (2.0,5.0);
+%\draw [color = black] (3.2,5.0) -- (2.7,2.5) -- (3.7,2.5) -- (3.2,5.0);
+%\draw [color = black] (4.4,5.0) -- (3.9,2.5) -- (4.9,2.5) -- (4.4,5.0);
+%\draw [color = black] (5.6,5.0) -- (5.1,2.5) -- (6.1,2.5) -- (5.6,5.0);
+%\draw [color = black] (6.8,5.0) -- (6.3,2.5) -- (7.3,2.5) -- (6.8,5.0);
+%\draw [color = black] (8.0,5.0) -- (7.5,2.5) -- (8.5,2.5) -- (8.0,5.0);
+%\draw [color = black] (9.2,5.0) -- (8.7,2.5) -- (9.7,2.5) -- (9.2,5.0);
+%\draw [color = black] (10.4,5.0) -- (9.9,2.5) -- (10.9,2.5) -- (10.4,5.0);
+
+% NODES
+\node[draw, circle, fill=black, scale=0.6] (a0) at (7.2,9.0) {};
+
+\node[draw, circle, fill=black, scale=0.6] (as) at (6.2,7.0) {};
+\node[draw, circle, fill=black, scale=0.6] (a1) at (4.9,6.2) {};
+\node[draw, circle, fill=black, scale=0.6] (a2) at (5.0,5.4) {};
+%\node[draw, circle, fill=black, scale=0.6] (a3) at (4.4,4.6) {};
+%\node[draw, circle, fill=black, scale=0.6] (a) at (7.0,2.1) {};
+
+\draw[dashed] (a0) -- (as);
+\draw[dashed] (as) -- (a1);
+\draw[dashed] (as) -- (7.5,6.2);
+\draw[line width =1.2pt] (a1) -- (a2);
+\draw[dashed] (a1) -- (4.2,5.4);
+\draw[dashed] (a2) -- (4.6,4.7);
+\draw[dashed] (a2) -- (5.4,4.7);
+\draw[dashed] (4.6,4.7) -- (4.2,4.0);
+\draw[dashed] (4.6,4.7) -- (5.0,4.0);
+
+\draw[->, color = blue, line width = 1.5pt] (6.9,8.8) -- (6.2,7.4);
+\draw[->, color = blue, line width = 1.5pt] (5.7,7.0) -- (4.9,6.5);
+
+% ETIQUETTES
+
+\node at (8.2,6.8) {$\mathcal{B}_{a'}$};
+\node at (7.5,8.7) {$a_0$};
+
+\node[color = blue] at (6.2,8.1) {$I$};
+\node[color = blue] at (6.6,9.3) {$(a_0,Y)$};
+\node[color = blue] at (6.6,6.0) {$(a,X) = I^k(a_0,Y)$};
+\node[color = blue] at (7.0,5.2) {$(a',X') = I^{k+1}(a_0,Y)$};
+
+\node at (6.2,6.7) {$a^*$};
+\node at (4.5,6.2) {$a$};
+\node at (4.6,5.4) {$a'$};
+%\node at (4.1,4.8) {$a_3$};
+%\node at (7.1,1.8) {$a$};
+
+
+\end{tikzpicture}
