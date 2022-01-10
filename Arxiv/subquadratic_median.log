@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2021.10.19)  6 JAN 2022 15:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2021.10.19)  10 JAN 2022 18:35
 entering extended mode
 **./subquadratic_median.tex
 (subquadratic_median.tex
@@ -816,11 +816,15 @@ LaTeX Font Info:    Trying to load font information for U+esvect on input line
 File: uesvect.fd 
 ) [1
 
-{C:/Users/pierr/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
+{C:/Users/pierr/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+
+LaTeX Warning: Reference `th:center_simplex' on page 2 undefined on input line 
+124.
+
+[2]
 LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 1
 31.
-
-("C:\Program Files\MiKTeX 2.9\tex/latex/base\omscmr.fd"
+ ("C:\Program Files\MiKTeX 2.9\tex/latex/base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <9> not available
@@ -872,7 +876,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 288.
 
 [6] (tikz/vertices_pof.tex) [7] (tikz/ingoing_edges.tex) (tikz/maximal_pof.tex)
-[8] (tikz/c5.tex) (tikz/simplex_c5.tex) [9] [10]
+[8] [9] (tikz/c5.tex) (tikz/simplex_c5.tex) [10]
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/it' in size <9> not available
 (Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 492.
@@ -891,25 +895,21 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [16] [17] (tikz/scenar1.tex) [18] [19] (tikz/compute_labels.tex) [20] [21]
 (tikz/compute_opposites_1.tex) (tikz/compute_opposites_2.tex)
-(tikz/milestones.tex)
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[22] [23] [24] (tikz/reduction.tex)
+(tikz/milestones.tex) [22] [23] [24] (tikz/reduction.tex)
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [25] [26] [27]
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/it' in size <10> not available
-(Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 1256
+(Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 1255
 .
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [28] [29] (tikz/two_cubes.tex) (tikz/hul.tex) [30] [31] [32] [33]
-Overfull \hbox (12.67732pt too wide) in paragraph at lines 1455--1457
+Overfull \hbox (12.67732pt too wide) in paragraph at lines 1454--1456
 [][]\OT1/cmr/bx/n/9 Corollary 4. []\OT1/cmr/m/it/9 The num-ber of MOPs in a me-
 dian graph is $\OML/cmm/m/it/9 O\OT1/cmr/m/n/9 (\OML/cmm/m/it/9 f\OT1/cmr/m/n/9
  (\OML/cmm/m/it/9 d; n\OT1/cmr/m/n/9 )\OML/cmm/m/it/9 n\OT1/cmr/m/n/9 )$\OT1/cm
@@ -918,32 +918,32 @@ r/m/it/9 , where $\OML/cmm/m/it/9 f\OT1/cmr/m/n/9 (\OML/cmm/m/it/9 d; n\OT1/cmr
  []
 
 [34] (subquadratic_median.bbl [35] [36]) [37]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1500.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1500.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1499.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1499.
  (subquadratic_median.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1500.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1500.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1499.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1499.
 
 Package rerunfilecheck Info: File `subquadratic_median.out' has not changed.
 (rerunfilecheck)             Checksum: 020FA5F0DEBDBC05025358471E50F221;2045.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1500.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1499.
  )
 (\end occurred inside a group at level 1)
 
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 21821 strings out of 492449
- 400519 string characters out of 3129736
- 522225 words of memory out of 3000000
- 25475 multiletter control sequences out of 15000+200000
+ 21824 strings out of 492449
+ 400462 string characters out of 3129736
+ 522351 words of memory out of 3000000
+ 25477 multiletter control sequences out of 15000+200000
  19444 words of font info for 76 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,27n,60p,1818b,8473s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 60i,27n,60p,1818b,8471s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmb
 x10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Progr
@@ -978,9 +978,9 @@ es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti7.pfb><C:/Program Files/MiKTeX
 s/type1/public/amsfonts/cm/cmtt12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
 public/amsfonts/symbols/msbm10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
 lic/esvect/vect9.pfb>
-Output written on subquadratic_median.pdf (37 pages, 777676 bytes).
+Output written on subquadratic_median.pdf (37 pages, 776772 bytes).
 PDF statistics:
- 926 PDF objects out of 1000 (max. 8388607)
- 234 named destinations out of 1000 (max. 500000)
+ 924 PDF objects out of 1000 (max. 8388607)
+ 235 named destinations out of 1000 (max. 500000)
  229 words of extra memory for PDF output out of 10000 (max. 10000000)
 

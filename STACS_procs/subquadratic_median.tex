@@ -114,7 +114,7 @@
 
 \begin{abstract}
 On sparse graphs, Roditty and Williams [2013] proved that no $O(n^{2-\varepsilon})$-time algorithm achieves an approximation factor smaller than $\frac{3}{2}$ for the diameter problem unless SETH fails.
-In this article, we solve a longstanding question: can we use the structural properties of median graphs to break this global quadratic barrier?
+In this article, we answer an open question formulated in the literature: can we use the structural properties of median graphs to break this global quadratic barrier?
 
 We propose the first combinatorial algorithm computing exactly all eccentricities of a median graph in truly subquadratic time. Median graphs constitute the family of graphs which is the most studied in metric graph theory because their structure represents many other discrete and geometric concepts, such as CAT(0) cube complexes. Our result generalizes a recent one, stating that there is a linear-time algorithm for computing all eccentricities in median graphs with bounded dimension $d$, {\em i.e.} the dimension of the largest induced hypercube (note that 1-dimensional median graphs are exactly the forests). This prerequisite on $d$ is not necessarily anymore to determine all eccentricities in subquadratic time. The execution time of our algorithm is $O(n^{1.6456}\log^{O(1)} n)$.
 
@@ -132,9 +132,9 @@ The purpose of this article is to break the quadratic barrier for the computatio
 \subsection{State of the art}
 
 Executing a \textit{Breadth First Search} (BFS) from each vertex of an input graph $G$ suffices to obtain its eccentricities in $O(n\card{E})$, with $n = \card{V}$. As median graphs are relatively sparse, $\card{E} \le n\log n$, these multiple BFSs compute all eccentricities in time $O(n^2\log n)$ for this class of graphs.
-Very efficient algorithms determining the diameter already exist on other classes of graphs, for example~\cite{AbWiWa16,Ca17,DuHaVi20}. Many works have also been devoted to approximation algorithms for this parameter. Chechik {\em et al.}~\cite{ChLaRoScTaWi14} showed that the diameter can be approximated within a factor $\frac{3}{2}$ in time $\tilde{O}(m^{\frac{3}{2}})$ on general graphs. On sparse graphs, it was shown~\cite{RoWi13} that no $O(n^{2-\varepsilon})$-time algorithm can achieve an approximation factor smaller than $\frac{3}{2}$ for the diameter unless the Strong Exponential Time Hypothesis (SETH) fails.
+Very efficient algorithms determining the diameter already exist on other classes of graphs, for example~\cite{AbWiWa16,Ca17,DuHaVi20}. Many works have also been devoted to approximation algorithms for this parameter. Chechik {\em et al.}~\cite{ChLaRoScTaWi14} showed that the diameter can be approximated within a factor $\frac{3}{2}$ in time $\tilde{O}(m^{\frac{3}{2}})$ on general graphs. On sparse graphs, it was shown in~\cite{RoWi13} that no $O(n^{2-\varepsilon})$-time algorithm achieves an approximation factor smaller than $\frac{3}{2}$ for the diameter unless the Strong Exponential Time Hypothesis (SETH) fails.
 
-Median graphs are bipartite and can be isometrically embedded into hypercubes. They admit structural properties, such as the Mulder's convex expansion~\cite{Mu78,Mu80}. They are strongly related to hypercubes retracts~\cite{Ba84}, Cartesian products and gated amalgams~\cite{BaCh08}, but also Helly hypergraphs~\cite{MuSc79}. They do not contain induced $K_{2,3}$, otherwise a triplet of vertices would admit at least two medians. The \textit{dimension} $d$ of a median graph $G$ is the dimension of its largest induced hypercube. The value of this parameter is at most $\lfloor \log n \rfloor$ and meets this upper bound when $G$ is an hypercube. Moreover, parameter $d$ takes part in the sparsity of median graphs: $\card{E} \le dn$.
+Median graphs are bipartite and can be isometrically embedded into hypercubes. They are the 1-skeletons of CAT(0) cube complexes~\cite{Ch00} and the domains of event structures~\cite{BaCo93}. They admit structural properties, such as the Mulder's convex expansion~\cite{Mu78,Mu80}. They are strongly related to hypercubes retracts~\cite{Ba84}, Cartesian products and gated amalgams~\cite{BaCh08}, but also Helly hypergraphs~\cite{MuSc79}. They do not contain induced $K_{2,3}$, otherwise a triplet of vertices would admit at least two medians. The \textit{dimension} $d$ of a median graph $G$ is the dimension of its largest induced hypercube. The value of this parameter is at most $\lfloor \log n \rfloor$ and meets this upper bound when $G$ is an hypercube. Moreover, parameter $d$ takes part in the sparsity of median graphs: $\card{E} \le dn$.
 
 An important concept related to median graphs is the equivalence relation $\Theta$. This is the reflexive and transitive closure of relation $\Theta_0$, where two edges are in $\Theta_0$ if they are opposite in a common 4-cycle. A $\Theta$-\textit{class} is an equivalence class of $\Theta$. Each $\Theta$-class of a median graph forms a matching cutset, splitting the graph into two convex connected components, called \textit{halfspaces}. The number $q \le n$ of $\Theta$-classes corresponds to the dimension of the hypercube in which the median graph $G$ isometrically embeds.  Value $q$ satisfies the Euler-type formula $2n-m-q\le 2$~\cite{KlMuSk98}. A recent LexBFS-based algorithm~\cite{BeChChVa20} identifies the $\Theta$-classes in linear time $O(\card{E})=O(dn)$.
 
@@ -163,7 +163,7 @@ Second, we remark that this method can be integrated to the algorithm already pr
 \item There is a combinatorial algorithm determining all eccentricities of median graphs in $\tilde{O}(2^{2d}n)$: Theorem~\ref{th:simple_ecc_teaser}, Section~\ref{subsec:constant_dim}.
 \end{itemize}
 
-The second and main contribution in this paper is the design of a subquadratic-time dynamic programming procedure which compute all eccentricities of any median graph. Here, the linear-time simple-exponential-FPT algorithm for all eccentricities presented above plays a crucial role: it is the base case. This framework consists in partitioning recursively the input graph $G$ into the halfspaces of its largest $\Theta$-classes. With our construction, the leaves of this recursive tree are median graphs with dimension at most $\frac{1}{3}\log n$ and we can apply the former linear-time FPT algorithm.
+The second and main contribution in this paper is the design of a subquadratic-time dynamic programming procedure which computes all eccentricities of any median graph. Here, the linear-time simple-exponential-FPT algorithm for all eccentricities presented above plays a crucial role: it is the base case. This framework consists in partitioning recursively the input graph $G$ into the halfspaces of its largest $\Theta$-class. With our construction, the leaves of this recursive tree are median graphs with dimension at most $\frac{1}{3}\log n$ and we can apply the former linear-time FPT algorithm.
 
 \begin{itemize}
     \item There is a combinatorial algorithm determining all eccentricities of median graphs in $\tilde{O}(n^{\frac{5}{3}})$: Theorem~\ref{thm:guigui-5}, Section~\ref{subsec:reduction}.
@@ -197,7 +197,7 @@ All graphs $G = (V,E)$ considered in this paper are undirected, unweighted, simp
 
 Given two vertices $u,v \in V$, let $d(u,v)$ be the \textit{distance} between $u$ and $v$, {\em i.e.} the length of the shortest $(u,v)$-path. The \textit{eccentricity} $\ecc(u)$ of a vertex $u \in V$ is the length of the longest shortest path starting from $u$. Put formally, $\ecc(u)$ is the maximum value $d(u,v)$ for all $v \in V$: $\ecc(u) = \max_{v \in V} d(u,v)$. The diameter of graph $G$ is the maximum distance between two of its vertices: $\diam(G) = \max_{u \in V} \ecc(u)$. 
 
-We denote by $I(u,v)$ the \textit{interval} of pair $u,v$. It contains exactly the vertices which are metrically between $u$ and $v$:
+We denote by $I(u,v)$ the \textit{interval} of pair $u,v$. It contains exactly the vertices which lie metrically between $u$ and $v$:
 $I(u,v) = \set{x \in V: d(u,x) + d(x,v) = d(u,v)}$. The vertices of $I(u,v)$ are lying on at least one shortest $(u,v)$-path.
 
 We say that a set $H\subseteq V$ (or the induced subgraph $G\left[H\right]$) is \textit{convex} if $I(u,v) \subseteq H$ for any pair $u,v \in H$. Moreover, we say that $H$ is \textit{gated} if any vertex $v \notin H$ admits a \textit{gate} $g_H(v) \in H$, {\em i.e.} a vertex that belongs to all intervals $I(v,x)$, $x\in H$. For any $x \in H$, we have $d(v,g_H(v)) + d(g_H(v),x) = d(v,x)$. Gated sets are convex by definition.
@@ -270,11 +270,11 @@ For any $1\le i\le q$, the graph $G$ deprived of edges of $E_i$, {\em i.e.} $G\b
 \begin{figure}[h]
 \centering
 \scalebox{0.7}{\input{tikz/halfspaces}}
-\caption{A class $E_i$ with sets $H_i', H_i'', \partial H_i', \partial H_i''$}
+\caption{A class $E_i$ with sets $H_i', H_i'', \partial H_i', \partial H_i''$.}
 \label{fig:halfspaces}
 \end{figure}
 
-We denote by $\partial H_i'$ the subset of $H_i'$ containing the vertices which are adjacent to a vertex in $H_i''$: $\partial H_i' = N(H_i'')$ Put differently, set $\partial H_i'$ is made up of vertices of $H_i'$ which are endpoints of edges in $E_i$. Symmetrically, set $\partial H_i''$ contains the vertices of $H_i''$ which are adjacent to $H_i'$. We say these sets are the \textit{boundaries} of halfspaces $H_i'$ and $H_i''$ respectively. Figure~\ref{fig:halfspaces} illustrates the notions of $\Theta$-class, halfspace and boundaries on a small example. In this particular case, an halfspace is equal to its boundary: $\partial H_i'' = H_i''$. The vertices of $\partial H_i'$ are colored in blue.
+We denote by $\partial H_i'$ the subset of $H_i'$ containing the vertices which are adjacent to a vertex in $H_i''$: $\partial H_i' = N(H_i'')$ Put differently, set $\partial H_i'$ is made up of vertices of $H_i'$ which are endpoints of edges in $E_i$. Symmetrically, set $\partial H_i''$ contains the vertices of $H_i''$ which are adjacent to $H_i'$. We say these sets are the \textit{boundaries} of halfspaces $H_i'$ and $H_i''$ respectively. Figure~\ref{fig:halfspaces} illustrates the notions of $\Theta$-class, halfspace and boundary on a small example. In this particular case, an halfspace is equal to its boundary: $\partial H_i'' = H_i''$. The vertices of $\partial H_i'$ are colored in blue.
 
 \begin{lemma}[Boundaries~\cite{BeChChVa20,HaImKl99,Mu80}]
 Both $\partial H_i'$ and $\partial H_i''$ are convex/gated. Moreover, the edges of $E_i$ define an isomorphism between $\partial H_i'$ and $\partial H_i''$.
@@ -319,7 +319,7 @@ We terminate this preliminary section with a few words on maximal POFs, {\em i.e
 
 \begin{theorem}[\ref{th:maximal_pofs}]
 For any maximal induced hypercube, the $\Theta$-classes of its edges form a maximal POF.
-Conversely, for any maximal POF $X$, there exists a unique hypercube of signature $X$. 
+Conversely, for any maximal POF $X$, there exists an unique hypercube of signature $X$. 
 \label{th:maximal_pofs_teaser}
 \end{theorem}
 
@@ -373,7 +373,7 @@ Let $H$ and $G$ be median graphs.
 If $H$ is an induced subgraph of $G$ then, every $\Theta$-class of $H$ is contained in a $\Theta$-class of $G$.
 \end{lemma}
 
-This above Lemma~\ref{lem:guigui-2_teaser} can be strenghtened in the special case of {\em isometric} subgraphs, namely:
+This above Lemma~\ref{lem:guigui-2_teaser} can be strenghtened in the special case of {\em isometric} subgraphs.
 
 \begin{lemma}[\ref{lem:guigui-2bis}]\label{lem:guigui-2bis_teaser}
 Let $H$ and $G$ be median graphs, and let $E_1,E_2,\ldots,E_q$ denote the $\Theta$-classes of $G$.
@@ -383,7 +383,7 @@ If $H$ is an isometric subgraph of $G$ then, the $\Theta$-classes of $H$ are exa
 An important consequence of Lemma~\ref{lem:guigui-2_teaser} is the following relation between the dimension $d$ of a median graph and the cardinality of its $\Theta$-classes.
 
 \begin{lemma}[\ref{lem:guigui-3}]\label{lem:guigui-3_teaser}
-Let $G$ be a median graph, and let $D := \max\{ |E_i| \mid 1 \leq i \leq q\}$ be the maximum cardinality of a $\Theta$-class of $G$. Then, $d = \dim(G) \leq \lfloor\log{D}\rfloor + 1$, and this bound is sharp.
+Let $G$ be a median graph, and let $D := \max\{ |E_i| \mid 1 \leq i \leq q\}$ be the maximum cardinality of a $\Theta$-class of $G$. Then, $d = \dim(G) \leq \lfloor\log{D}\rfloor + 1$.
 \end{lemma}
 
 We are now ready to present our main technical contribution in this section.
@@ -405,7 +405,7 @@ For that, we proceed as follows.
 We consider all leaves of $T$ whose label $H$ satisfies $E(H) \cap E_i \neq \emptyset$.
 By Lemma~\ref{lem:guigui-2bis_teaser}, $E(H) \cap E_i$ is a $\Theta$-class of $H$.
 Both halfspaces of $E_i$ become the left and right children of $H$ in $T$. 
-Recall that the leaves of $T$ at this step $i$ are the connected components of $G \setminus (E_1 \cup E_2 \cup \ldots E_{i-1})$, and in particular that they form a partition of $V(G)$.
+Recall that the leaves of $T$ at this step $i$ are the connected components of $G \setminus (E_1 \cup E_2 \cup \ldots \cup E_{i-1})$, and in particular that they form a partition of $V(G)$.
 Therefore, each step takes linear time by reduction to computing the connected components in vertex-disjoint subgraphs of $G$.
 Overall, the total time for constructing the tree $T$ is in ${O}(pm) = \tilde{O}(n^2/D)$.
 
@@ -425,9 +425,9 @@ Indeed, by Lemma~\ref{lem:guigui-2_teaser}, every $\Theta$-class of $H$ is conta
 Since we removed all $\Theta$-classes of $G$ with at least $D$ edges, the claim now follows from Lemma~\ref{lem:guigui-3_teaser}.
 In particular, we can compute the list of all eccentricities for $H$ in $\tilde{O}(c^{\lfloor \log{D} \rfloor + 1}|V(H)|) = \tilde{O}(D^{\log{c}}|V(H)|)$ time.
 Recall that the leaves of $T$ partition $V(G)$, and therefore, the total runtime for computing the list of eccentricities for the leaves is in $\tilde{O}(D^{\log{c}}n)$.
-    \item From now on, let us assume $H$ to label an internal node of $T$ (inductive case).
+    \item From now on, let us assume $H$ labels an internal node of $T$ (inductive case).
 Let $H_i',H_i''$ be its children nodes, obtained from the removal of $E(H) \cap E_i$ for some $1 \leq i \leq p$.
--- For convenience, we will say later in the proof that $H$ is a $i$-node. --
+-- For convenience, we will say later in the proof that $H$ is an $i$-node. --
 Recall that $E(H) \cap E_i$ is a $\Theta$-class of $H$.
 In particular, $H_i',H_i''$ are gated subgraphs.
 By Lemma~\ref{lem:guigui-1_teaser}, we can compute in ${O}(|V(H_i')|)$ time the eccentricities in $H$ of all vertices in $H_i'$ if we are given as input: the list of eccentricities in $H_i'$, the list of eccentricities in $H_i''$, and for every $v \in V(H_i')$ its gate $v^* \in \partial H_i''$ and the distance $d(v,v^*)$. 
@@ -622,7 +622,7 @@ Indeed, classes $E_i$ and $E_j$ are orthogonal if and only if the splits produce
 \label{le:perp_incomp}
 \end{lemma}
 
-We say that $E_i$ and $E_j$ are \textit{parallel} if they are not orthogonal, that is $H_i \subseteq H_j$ for some $H_i \in \set{H_i',H_i''}$ and $H_j \in \set{H_j',H_j''}$. 
+The concept of \textit{orthogonality} is sometimes described with different words in the literature depending on the context: incompatible, \textit{concurrent} or \textit{crossing}. We say that $E_i$ and $E_j$ are \textit{parallel} if they are not orthogonal, that is $H_i \subseteq H_j$ for some $H_i \in \set{H_i',H_i''}$ and $H_j \in \set{H_j',H_j''}$. 
 
 We pursue with a property on orthogonal $\Theta$-classes: if two edges of two orthogonal classes $E_i$ and $E_j$ are incident, they belong to a common square.
 
@@ -631,17 +631,17 @@ Let $xu \in E_i$ and $uy \in E_j$. If $E_i$ and $E_j$ are orthogonal, then there
 \label{le:squares}
 \end{lemma}
 
-\textbf{Pairwise orthogonal families}. We focus on set of $\Theta$-classes which are pairwise orthogonal.
+\textbf{Pairwise orthogonal families}. We focus on the set of $\Theta$-classes which are pairwise orthogonal.
 
 \begin{definition}[Pairwise Orthogonal Family]
 We say that a set of classes $X \subseteq \mathcal{E}$ is a {\em Pairwise Orthogonal Family (POF for short)} if for any pair $E_j,E_h \in X$, we have $E_j \perp E_h$.
 \end{definition}
 
-The empty set is considered as a POF. We denote by $\mathcal{L}$ the set of POFs of the median graph $G$. The notion of POF is strongly related to the induced hypercubes in median graphs. First, observe that all $\Theta$-classes of a median graph form a POF if and only if the graph is an hypercube of dimension $\log n$~\cite{Ko09,MoMuRo98}. Secondly, the next lemma precises the relationship  between POFs and hypercubes.
+This notion is not completely new, since it implicitely appears in certain properties established on median graphs (for instance, the \textit{downward cube} property in~\cite{BeChChVa20}). The empty set is considered as a POF. We denote by $\mathcal{L}$ the set of POFs of the median graph $G$. The notion of POF is strongly related to the induced hypercubes in median graphs. First, observe that all $\Theta$-classes of a median graph form a POF if and only if the graph is a hypercube of dimension $\log n$~\cite{Ko09,MoMuRo98}. Secondly, the next lemma precises the relationship  between POFs and hypercubes.
 
 
 \begin{lemma}[POFs adjacent to a vertex~\cite{BeHa21}]
-Let $X$ be a POF, $v \in V$, and assume that for each $E_i \in X$, there is an edge of $E_i$ adjacent to $v$. There exists an hypercube $Q$ containing vertex $v$ and all edges of $X$ adjacent to $v$. Moreover, the $\Theta$-classes of the edges of $Q$ are the classes of $X$.
+Let $X$ be a POF, $v \in V$, and assume that for each $E_i \in X$, there is an edge of $E_i$ adjacent to $v$. There exists a hypercube $Q$ containing vertex $v$ and all edges of $X$ adjacent to $v$. Moreover, the $\Theta$-classes of the edges of $Q$ are the classes of $X$.
 \label{le:pof_adjacent}
 \end{lemma}
 
@@ -666,7 +666,7 @@ Consider an arbitrary canonical basepoint $v_0 \in V$ and the $v_0$-orientation 
 
 An example is given in Figure~\ref{fig:vertices_pof} with a small median graph of dimension $d=2$. $v_0$ is the canonical basepoint  and edges are colored according to  their $\Theta$-class. For example, $v_1v_3 \in E_1$. We associate with any POF $X$ of $G$ the vertex $v_X$ satisfying $\mathcal{E}^-(v_X) = X$ with the $v_0$-orientation. Obviously, the empty POF is associated with $v_0$ which has no incoming edges.
 
-A straightforward consequence of this bijection is that parameter $q$, the number of $\Theta$-classes, is less than the number of vertices $n$. But it can be used less trivially to enumerate the POFs of a median graph in linear time~\cite{BaQuSaMa02,Ko09}. Given a basepoint $v_0$, we say that the \textit{basis} (resp. \textit{anti-basis}) of an induced hypercube $Q$ is the single vertex $v$ such that all edges of the hypercube adjacent to $v$ are outgoing from (resp. incoming into) $v$. Said differently, the basis of $Q$ is its closest-to-$v_0$ vertex and its anti-basis is its farthest-to-$v_0$ vertex. What Lemma~\ref{le:pof_hypercube} states is also that we can associate with any POF $X$ an hypercube $Q_X$ which contains exactly the classes $X$ and admits $v_X$ as its anti-basis. This observation implies that the number of POFs is less than the number of hypercubes in $G$. Moreover, the hypercube $Q_X$ is the closest-to-$v_0$ hypercube formed with the classes in $X$. Figure~\ref{subfig:ingoing_edges} shows a vertex $v$ with its incoming and outgoing edges with the $v_0$-orientation. The dashed edges represent the hypercube with anti-basis $v$ and POF $\mathcal{E}^-(v)$.
+A straightforward consequence of this bijection is that parameter $q$, the number of $\Theta$-classes, is less than the number of vertices $n$. But it can be used less trivially to enumerate the POFs of a median graph in linear time~\cite{BaQuSaMa02,Ko09}. Given a basepoint $v_0$, we say that the \textit{basis} (resp. \textit{anti-basis}) of an induced hypercube $Q$ is the single vertex $v$ such that all edges of the hypercube adjacent to $v$ are outgoing from (resp. incoming into) $v$. Said differently, the basis of $Q$ is its closest-to-$v_0$ vertex and its anti-basis is its farthest-to-$v_0$ vertex. What Lemma~\ref{le:pof_hypercube} states is also that we can associate with any POF $X$ a hypercube $Q_X$ which contains exactly the classes $X$ and admits $v_X$ as its anti-basis. This observation implies that the number of POFs is less than the number of hypercubes in $G$. Moreover, the hypercube $Q_X$ is the closest-to-$v_0$ hypercube formed with the classes in $X$. Figure~\ref{subfig:ingoing_edges} shows a vertex $v$ with its incoming and outgoing edges with the $v_0$-orientation. The dashed edges represent the hypercube with anti-basis $v$ and POF $\mathcal{E}^-(v)$.
 
 \begin{figure}[h]
 \begin{subfigure}[b]{0.49\columnwidth}
@@ -700,12 +700,12 @@ $\alpha(G)\le 2^dn$.
 
 Value $\alpha(G)$ consider all hypercubes, in particular those of dimension 0, {\em i.e.} vertices. From now on, the word ``hypercube'' refers to the hypercubes of dimension at least one.
 
-Each hypercube in the median graph $G$ can be defined with only its anti-basis $v$ and the edges $\widehat{N}$ of the hypercube that are adjacent and going into $v$ according the $v_0$-orientation. These edges are a subset of $N^-(v)$: $\widehat{N} \subseteq N^-(v)$. Conversely, given a vertex $v$, each subset of $N^-(v)$ produces an hypercube which admits $v$ as an anti-basis (this hypercube is a sub-hypercube of the one obtained with $v$ and $N^-(v)$, Lemma~\ref{le:pof_hypercube}). Another possible bijection is to consider an hypercube as a pair composed of its anti-basis $v$ and the $\Theta$-classes $\widehat{\mathcal{E}}$ of the edges in $\widehat{N}$ (its signature).
+Each hypercube in the median graph $G$ can be defined with only its anti-basis $v$ and the edges $\widehat{N}$ of the hypercube that are adjacent and going into $v$ according to the $v_0$-orientation. These edges are a subset of $N^-(v)$: $\widehat{N} \subseteq N^-(v)$. Conversely, given a vertex $v$, each subset of $N^-(v)$ produces a hypercube which admits $v$ as an anti-basis (this hypercube is a sub-hypercube of the one obtained with $v$ and $N^-(v)$, Lemma~\ref{le:pof_hypercube}). Another possible bijection is to consider a hypercube as a pair composed of its anti-basis $v$ and the $\Theta$-classes $\widehat{\mathcal{E}}$ of the edges in $\widehat{N}$ (its signature).
 
 As a consequence, a simple graph search as BFS enables us to enumerate the hypercubes in $G$ in time $O(d2^dn)$.
 
 \begin{lemma}[Enumeration of hypercubes~\cite{BeHa21}]
-We can enumerate all triplets $(v,u,\widehat{\mathcal{E}})$, where $v$ is the anti-basis of an hypercube $Q$, $u$ its basis, and $\widehat{\mathcal{E}}$ the signature of $Q$ in time $O(d2^dn)$. Moreover, the list obtained fulfils the following partial order: if $d(v_0,v) < d(v_0,v')$, then any triplet $(v,u,\widehat{\mathcal{E}})$ containing $v$ appears before any triplet $(v',u',\widehat{\mathcal{E}}')$ containing $v'$.
+We can enumerate all triplets $(v,u,\widehat{\mathcal{E}})$, where $v$ is the anti-basis of a hypercube $Q$, $u$ its basis, and $\widehat{\mathcal{E}}$ the signature of $Q$ in time $O(d2^dn)$. Moreover, the list obtained fulfils the following partial order: if $d(v_0,v) < d(v_0,v')$, then any triplet $(v,u,\widehat{\mathcal{E}})$ containing $v$ appears before any triplet $(v',u',\widehat{\mathcal{E}}')$ containing $v'$.
 \label{le:enum_hypercubes}
 \end{lemma}
 
@@ -719,15 +719,15 @@ Conversely, for any maximal POF $X$, there exists a unique hypercube of signatur
 \label{th:maximal_pofs}
 \end{theorem}
 \begin{proof}
-Let $Q$ be a maximal hypercube and $X_Q$ its signature. We begin with the proof that $X_Q$ is a maximal POF. Assume that $Y \subsetneq X_Q$. As $Y$ is a POF, there is a vertex $v_Y \in V$ satisfying $\mathcal{E}^-(v_Y) = Y$. Similarly, we denote by $v_X$ the vertex such that $\mathcal{E}^-(v_X) = X_Q$. Both $v_X$ and $v_Y$ belong to the boundary of any $\Theta$-class of $X_Q$ (the one which is the farthest from $v_0$). In brief, 
+Let $Q$ be a maximal hypercube and $X_Q$ its signature. We begin with the proof that $X_Q$ is a maximal POF. Assume that $Y \supsetneq X_Q$. As $Y$ is a POF, there is a vertex $v_Y \in V$ satisfying $\mathcal{E}^-(v_Y) = Y$. Similarly, we denote by $v_X$ the vertex such that $\mathcal{E}^-(v_X) = X_Q$. Both $v_X$ and $v_Y$ belong to the boundary of any $\Theta$-class of $X_Q$ (the one which is the farthest from $v_0$). In brief, 
 \begin{equation}v_X,v_Y \in \bigcap_{E_i \in X_Q} \partial H_i''
 \label{eq:bigcap_gated}
 \end{equation}
-As every $\partial H_i''$ is gated, then the intersection written in Eq.~\eqref{eq:bigcap_gated} is convex/gated too. Thus, the shortest $(v_X,v_Y)$-path is entirely contained in set $\bigcap_{X_Q} \partial H_i''$. Let $(v_X,z)$ be the first edge of this path and $E_j$ the $\Theta$-class of this edge. Each $\Theta$-class form an isomorphism between its two boundaries (Lemma~\ref{le:boundaries}): as $z \in \bigcap_{X_Q} \partial H_i''$, there is an hypercube isomorphic to $Q$ in the boundary of $E_j$ containing $z$. Therefore, there is an hypercube of dimension $\card{X_Q}+1$ containing all vertices of $Q$. This yields a contradiction as $Q$ is supposed to be maximal.
+As every $\partial H_i''$ is gated, then the intersection written in Eq.~\eqref{eq:bigcap_gated} is convex/gated too. Thus, the shortest $(v_X,v_Y)$-path is entirely contained in set $\bigcap_{X_Q} \partial H_i''$. Let $(v_X,z)$ be the first edge of this path and $E_j$ the $\Theta$-class of this edge. Each $\Theta$-class form an isomorphism between its two boundaries (Lemma~\ref{le:boundaries}): as $z \in \bigcap_{X_Q} \partial H_i''$, there is a hypercube isomorphic to $Q$ in the boundary of $E_j$ containing $z$. Therefore, there is a hypercube of dimension $\card{X_Q}+1$ containing all vertices of $Q$. This yields a contradiction as $Q$ is supposed to be maximal.
 
-Conversely, let $Q$ be an hypercube and assume that its signature $X_Q$ is a maximal POF. We suppose that there is a second hypercube $Q' \neq Q$ such that $X_Q = X_{Q'}$. Then, set $\bigcap_{X_Q} \partial H_i''$ contains at least two elements: the anti-bases of hypercubes $Q$ and $Q'$. Using the same argument as above, we can put in evidence an edge with two endpoints in $\bigcap_{X_Q} \partial H_i''$. The $\Theta$-class of this edge is thus orthogonal of any class $E_i$ of $X_Q$ which defines an isomorphism between $\partial H_i'$ and $\partial H_i''$. Consequently, we obtain a POF superset of $X_Q$, a contradiction.
+Conversely, let $Q$ be a hypercube and assume that its signature $X_Q$ is a maximal POF. We suppose that there is a second hypercube $Q' \neq Q$ such that $X_Q = X_{Q'}$. Then, the set $\bigcap_{X_Q} \partial H_i''$ contains at least two elements: the anti-bases of hypercubes $Q$ and $Q'$. Using the same argument as above, we can put in evidence an edge with two endpoints in $\bigcap_{X_Q} \partial H_i''$. The $\Theta$-class of this edge is thus orthogonal of any class $E_i$ of $X_Q$ which defines an isomorphism between $\partial H_i'$ and $\partial H_i''$. Consequently, we obtain a POF superset of $X_Q$, a contradiction.
 
-For any POF $X$, there is at least one hypercube with signature $X$ such that its anti-basis $v$ verifies $\mathcal{E}^-(v) = X$ according to Lemma~\ref{le:pof_hypercube}. In summary, any maximal POF $X$ can be associated with a unique hypercube of signature $X$.
+For any POF $X$, there is at least one hypercube with signature $X$ such that its anti-basis $v$ verifies $\mathcal{E}^-(v) = X$ according to Lemma~\ref{le:pof_hypercube}. In summary, any maximal POF $X$ can be associated with an unique hypercube of signature $X$.
 \end{proof}
 
 Figure~\ref{subfig:maximal_pof} illustrates this proof with two squares $Q$ and $Q'$ with the same signature $\set{E_i,E_h}$. One can observe the appearance of a hypercube of larger dimension containing $Q$, giving evidence of the non-maximality of $X_Q$.
@@ -742,14 +742,14 @@ We begin with some properties of simplex graphs and then describe the quasilinea
 
 Given any undirected graph $G$, the vertices of the simplex graph $K(G)$ associated to $G$ represent the induced cliques (not necessarily maximal) of $G$. Two of these cliques are connected by an edge if they differ by exactly one element.
 
-\begin{definition}[Simplex graphs~\cite{BaCh08}]
+\begin{definition}[Simplex graphs~\cite{BaVe89}]
 The simplex graph $K(G)=(V_K,E_K)$ of $G=(V,E)$ is made up of the vertex set $V_K = \set{C\subseteq V: C ~\emph{induced complete graph of}~ G}$ and the edge set $E_K = $\\ $\set{(C,C') : C,C' \in V_K, C \subsetneq C', \card{C'}-\card{C} = 1}$.
 \label{def:simplex}
 \end{definition}
 
 Observe that the empty clique of $G$ also corresponds to a vertex $v_{\emptyset}$ in $K(G)$.  Therefore $v_{\emptyset}$ has degree $n = \card{V}$ in $K(G)$. Figure~\ref{fig:example_simplex} shows, as an example, the simplex graph of a $C_5$. Labels indicate the correspondence between vertices and cliques. We note that simplex graphs of cycles are cogwheels, {\em i.e.} wheels with a subdivision on each external edge.
 
-The simplex graph of a $n$-complete graph is an hypercube of dimension $n$. More generally, simplex graphs are median~\cite{BaCh08,BaLeMo86}. We will see later than certain median graphs are not simplex graphs. As a subfamily of median graphs, the design of a subquadratic-time algorithm for the eccentricities on simplex graphs is of interest. Moreover, the dimension $d$ of simplex graphs can be unbounded because hypercubes belong to this class of graphs (their dimension is logarithmic in the size of the vertex set).
+The simplex graph of a $n$-complete graph is a hypercube of dimension $n$. More generally, simplex graphs are median~\cite{BaCh08,BaLeMo86}. We will see later than certain median graphs are not simplex graphs. As a subfamily of median graphs, the design of a subquadratic-time algorithm for the eccentricities on simplex graphs is of interest. Moreover, the dimension $d$ of simplex graphs can be unbounded because hypercubes belong to this class of graphs (their dimension is logarithmic in the size of the vertex set).
 
 \begin{figure}[h]
 \begin{subfigure}[b]{0.49\columnwidth}
@@ -776,10 +776,10 @@ Let $G$ be a median graph. The following statements are equivalent:
 \label{th:simplex}
 \end{theorem}
 \begin{proof}
-(2)$\Leftrightarrow$(3). Assume each $\Theta$-class is adjacent to $v_0$. For each POF $X$, there is an hypercube with signature $X$ and containing $v_0$ (Lemma~\ref{le:pof_adjacent}). For each maximal hypercube, its signature (the set of $\Theta$-classes it contains) is a maximal POF and, moreover, no other maximal hypercube has the same signature (Theorem~\ref{th:maximal_pofs}). For this reason, each maximal hypercube necessarily contains $v_0$. 
+(2)$\Leftrightarrow$(3). Assume each $\Theta$-class is adjacent to $v_0$. For each POF $X$, there is a hypercube with signature $X$ and containing $v_0$ (Lemma~\ref{le:pof_adjacent}). For each maximal hypercube, its signature (the set of $\Theta$-classes it contains) is a maximal POF and, moreover, no other maximal hypercube has the same signature (Theorem~\ref{th:maximal_pofs}). For this reason, each maximal hypercube necessarily contains $v_0$. 
 Conversely, if any maximal hypercube contains $v_0$, as each $\Theta$-class belongs to at least one maximal POF, then each $\Theta$-class is necessarily adjacent to $v_0$.
 
-(2)$\Rightarrow$(1). We consider a median graph $G$ such that all $\Theta$-classes are adjacent to $v_0$. Our objective is to prove that there exists $G'$ such that $G = K(G')$. Let $G'$ be the graph where its vertices represent the $\Theta$-classes of $G$ and two of them are connected by an edge if the $\Theta$-classes are orthogonal. In this way, every clique of $G'$ (even the empty one) corresponds to a POF of $G$. For any POF $X$ of $G$, its $\Theta$-classes are adjacent to $v_0$, so there exists an hypercube containing $v_0$ with signature $X$, according to Lemma~\ref{le:pof_adjacent}. Moreover, given a POF $X$, this hypercube is unique. Its anti-basis (opposite of $v_0$) thus represents the clique $X$ in $G'$. Conversely, according to the $v_0$-orientation, each vertex admits its own set of incoming $\Theta$-classes which forms a POF (Lemma~\ref{le:pof_hypercube}). Therefore, we can associate to each vertex of $G$ a clique of $G'$. 
+(2)$\Rightarrow$(1). We consider a median graph $G$ such that all $\Theta$-classes are adjacent to $v_0$. Our objective is to prove that there exists $G'$ such that $G = K(G')$. Let $G'$ be the graph where its vertices represent the $\Theta$-classes of $G$ and two of them are connected by an edge if the $\Theta$-classes are orthogonal. In this way, every clique of $G'$ (even the empty one) corresponds to a POF of $G$. For any POF $X$ of $G$, its $\Theta$-classes are adjacent to $v_0$, so there exists a hypercube containing $v_0$ with signature $X$, according to Lemma~\ref{le:pof_adjacent}. Moreover, given a POF $X$, this hypercube is unique. Its anti-basis (opposite of $v_0$) thus represents the clique $X$ in $G'$. Conversely, according to the $v_0$-orientation, each vertex admits its own set of incoming $\Theta$-classes which forms a POF (Lemma~\ref{le:pof_hypercube}). Therefore, we can associate to each vertex of $G$ a clique of $G'$. 
 
 Then, two vertices $u,v$ of $G$ are adjacent if and only if $\mathcal{E}^-(v) = \mathcal{E}^-(u) \cup \set{E_i}$, for some class $E_i$. On one hand, suppose $uv \in E_i$. Assume that there exists $E_j \in \mathcal{E}^-(u) \backslash \mathcal{E}^-(v)$. Then, $E_j$ is parallel to $E_i$, otherwise $E_j \in \mathcal{E}^-(v)$ (Lemma~\ref{le:squares}). This is a contradiction: as $H_i'' \subsetneq H_j''$, $E_i$ cannot be adjacent to $v_0$. Moreover, if $E_h \in \mathcal{E}^-(v) \backslash \mathcal{E}^-(u)$, $h \neq i$, then $E_h$ is necessarily incoming into $u$ because of Lemma~\ref{le:squares}, as $E_h$ and $E_i$ are orthogonal. So, $\mathcal{E}^-(v) \backslash \mathcal{E}^-(u) = \set{E_i}$. On the other hand, if $\mathcal{E}^-(v) = \mathcal{E}^-(u) \cup \set{E_i}$, let $v'$ be the vertex such that $v'v \in E_i$. Again, Lemma~\ref{le:squares} implies that all $\Theta$-classes incoming into $v$ are also incoming into $v'$, so $\mathcal{E}^-(u) \subseteq \mathcal{E}^-(v')$. Furthermore, if there is some $E_j \notin \mathcal{E}^-(u)$ incoming into $v'$, then it should be parallel to $E_i$, a contradiction. Hence, $v' = u$.
 
@@ -794,7 +794,7 @@ The most obvious example of median graph which is not simplex is certainly the p
 
 The proof (2)$\Rightarrow$(1) reveals the reverse application of $K$. 
 
-\begin{definition}[Crossing graphs~\cite{KlKo09,KlMu02}]
+\begin{definition}[Crossing graphs~\cite{BaVe89,KlMu02}]
 Let $G$ be a median graph. Its \textit{crossing graph} $G^{\#}$ is the graph obtained by considering $\Theta$-classes as its vertices and such that two $\Theta$-classes are adjacent if they are orthogonal.
 \label{def:crossing}
 \end{definition}
@@ -805,25 +805,28 @@ Now, we focus on the problem of determining a diametral pair of a simplex graph 
 
 A key result is the fact that the central vertex $v_0$ of the simplex graph belongs to the interval $I(u,v)$ of any pair $u,v$ satisfying $d(u,v) = \ecc(u)$.
 
-\begin{theorem}
+\begin{lemma}
 Let $u,v \in V(G)$ such that $d(u,v) = \ecc(u)$. Then, $v_0 \in I(u,v)$.
-\label{th:center_simplex}
-\end{theorem}
+\label{le:center_simplex}
+\end{lemma}
 \begin{proof}
-Suppose, by way of contradiction, that $m = m(u,v,v_0) \neq v_0$. There is at least one edge $e$ incoming into $m$ according to the $v_0$-orientation. Let $E_i$ denote its $\Theta$-class: $E_i \in \sigma_{v_0,m}$. Let $E_j$ be a $\Theta$-class separating $m$ and $v$: $E_j \in \sigma_{m,v}$. We have $i \neq j$: if $E_i \in \sigma_{m,v}$, then the concatenation of a shortest $(v_0,m)$-path with a shortest $(m,v)$-path does not give a shortest $(v_0,v)$-path (Lemma~\ref{le:signature}), a contradiction as $m \in I(v_0,v)$. Let $v' \in \partial H_j'$ be some vertex adjacent to an edge of $E_j$ in $I(m,v)$. According to Theorem~\ref{th:simplex}, $E_j$ is also adjacent to $v_0$. In summary, $v_0,v' \in \partial H_j'$. By convexity of the boundaries (Lemma~\ref{le:boundaries}), all vertices of $I(v_0,v')$ belong to $\partial H_j'$, among them the two endpoints of $e$ because $I(v_0,m) \subseteq I(v_0,v')$. As $E_j$ consists in an isomorphism between its two boundaries and $e \in E_i$, then $E_i \perp E_j$.
+Let $H$ be the graph such that $G = K(H)$. The distance $d(u,v)$ is equal to the number of $\Theta$-classes of $G$ separating them, so $d(u,v) = \card{\mathcal{E}^-(u) \bigtriangleup \mathcal{E}^-(v)}$. Let $w$ be the vertex of $G$ such that $\mathcal{E}^-(w) = \mathcal{E}^-(v) \backslash \mathcal{E}^-(u)$. If $\mathcal{E}^-(u) \cap \mathcal{E}^-(v) \neq \emptyset$, then $d(u,w) = \card{\mathcal{E}^-(u) \bigtriangleup \mathcal{E}^-(w)} = \card{\mathcal{E}^-(u)} + \card{\mathcal{E}^-(w)} > \card{\mathcal{E}^-(u) \backslash \mathcal{E}^-(v)} + \card{\mathcal{E}^-(v) \backslash \mathcal{E}^-(u)} = d(u,v)$. So, $d(u,w) > \ecc(u)$, a contradiction.
+%%%% OLD PROOF %%%%
+%Suppose, by way of contradiction, that $m = m(u,v,v_0) \neq v_0$. There is at least one edge $e$ incoming into $m$ according to the $v_0$-orientation. Let $E_i$ denote its $\Theta$-class: $E_i \in \sigma_{v_0,m}$. Let $E_j$ be a $\Theta$-class separating $m$ and $v$: $E_j \in \sigma_{m,v}$. We have $i \neq j$: if $E_i \in \sigma_{m,v}$, then the concatenation of a shortest $(v_0,m)$-path with a shortest $(m,v)$-path does not give a shortest $(v_0,v)$-path (Lemma~\ref{le:signature}), a contradiction as $m \in I(v_0,v)$. Let $v' \in \partial H_j'$ be some vertex adjacent to an edge of $E_j$ in $I(m,v)$. According to Theorem~\ref{th:simplex}, $E_j$ is also adjacent to $v_0$. In summary, $v_0,v' \in \partial H_j'$. By convexity of the boundaries (Lemma~\ref{le:boundaries}), all vertices of $I(v_0,v')$ belong to $\partial H_j'$, among them the two endpoints of $e$ because $I(v_0,m) \subseteq I(v_0,v')$. As $E_j$ consists in an isomorphism between its two boundaries and $e \in E_i$, then $E_i \perp E_j$.
+%
+%
+%As a consequence, $E_i$ is orthogonal to any $\Theta$-class of $\sigma_{m,v}$. Recall that $E_i$ is adjacent to $m$. By successive applications of Lemma~\ref{le:squares} to the vertices of a shortest $(m,v)$-path, we show that $E_i$ is adjacent to all these vertices, in particular $v$. 
+%Here comes the contradiction: any shortest $(u,v)$-path can be extended by concatenating to it the edge of $E_i$ adjacent to $v$, as $E_i \notin \sigma_{u,v}$. So, $v_0 = m$ and $v_0 \in I(u,v)$. 
+\end{proof}
 
 \begin{figure}[h]
 \centering
 \scalebox{0.8}{\input{tikz/center_simplex.tex}}
-\caption{Illustration of the contradiction in the proof of Theorem~\ref{th:center_simplex}.}
+\caption{Illustration of the contradiction in the proof of Lemma~\ref{le:center_simplex}.}
 \label{fig:center_simplex}
 \end{figure}
 
-As a consequence, $E_i$ is orthogonal to any $\Theta$-class of $\sigma_{m,v}$. Recall that $E_i$ is adjacent to $m$. By successive applications of Lemma~\ref{le:squares} to the vertices of a shortest $(m,v)$-path, we show that $E_i$ is adjacent to all these vertices, in particular $v$. 
-Here comes the contradiction: any shortest $(u,v)$-path can be extended by concatenating to it the edge of $E_i$ adjacent to $v$, as $E_i \notin \sigma_{u,v}$. So, $v_0 = m$ and $v_0 \in I(u,v)$. 
-\end{proof}
-
-Figure~\ref{fig:center_simplex} shows a simple example with $d(v_0,m) = 1$. The edges are oriented according to the $v_0$-orientation. The $\Theta$-class $E_i$ in $\sigma_{v_0,m}$ is present alongside the interval $I(m,v)$. The contradiction of the previous proof comes from the fact that the shortest $(u,v)$-path could be extended with the vertex $w$ which is the neighbor of $v$ in $\partial H_i'$.
+Figure~\ref{fig:center_simplex} shows a simple example with $m=m(u,v,v_0)\neq v_0$ and $d(v_0,m) = 1$. The edges are oriented according to the $v_0$-orientation. The $\Theta$-class $E_i$ in $\sigma_{v_0,m}$ is present alongside the interval $I(m,v)$. The contradiction of the previous proof comes from the fact that the shortest $(u,v)$-path could be extended with the vertex $w$ which is the neighbor of $v$ in $\partial H_i'$.
 
 Two vertices $u,v$ forming a diametral pair cannot share a common incoming $\Theta$-class $E_i$, in other words $\mathcal{E}^-(u) \cap \mathcal{E}^-(v) = \emptyset$, otherwise $m = m(u,v,v_0) \in I(u,v) \subseteq H_i''$ and $v_0 \in H_i'$. Moreover, the distance $d(u,v)$ is exactly $\card{\mathcal{E}^-(u)} + \card{\mathcal{E}^-(v)}$ because $\card{\mathcal{E}^-(u)} = d(v_0,u)$ and $\card{\mathcal{E}^-(v)} = d(v_0,v)$. So, determining the diameter of a simplex graph $G$ is equivalent to maximizing the sum $\card{X} + \card{Y}$, where $X$ and $Y$ are two POFs of $G$ that are disjoint. Computing the diameter is equivalent to find the largest pair of disjoint cliques in the crossing graph $G^{\#}$. Similarly, the eccentricity of a vertex $u$ is exactly the size $\card{\mathcal{E}^-(u)} + \card{\mathcal{E}^-(v)}$ of the largest pair of disjoint POFs $(\mathcal{E}^-(u),\mathcal{E}^-(v))$.
 Now, we can define the notion of \textit{opposite}.
@@ -884,19 +887,19 @@ The entire subsection is the proof of Theorem~\ref{th:solving_wopp}. We consider
 
 The first step of our algorithm consists in building a binary tree $T$. Tree $T$ is a representation of a partition refinement procedure over $\mathcal{L}$. We remind the reader that partition refinement is a powerful algorithmic technique leading to the design of linear-time algorithms for many well-known problems~\cite{HaPaVi99,PaTa87}. It consists in successive partitionings of a collection of sets.
 
-In our context, the collection which is splitted is the set of POFs $\mathcal{L}$ of the simplex graph $G$. The vertices $a \in V(T)$ of tree $T$, called \textit{nodes}, represent the sets obtained from the successive partitionings. They are indexed with POFs $L_a \in \mathcal{L}$. The edges of $T$ are indexed with a pair class-boolean. For each $a \in V(T)$ with two children, the two edges connecting it to his children are both indexed with the same $\Theta$-class but not the same boolean. This $\Theta$-class is denoted by $E\left[a\right]$. To improve the readibility, index $(E\left[a\right],\mbox{true})$ will be denoted by $+E\left[a\right]$ while $(E\left[a\right],\mbox{false})$ becomes $-E\left[a\right]$.
+In our context, the collection which is splitted is the set of POFs $\mathcal{L}$ of the simplex graph $G$. The vertices $a \in V(T)$ of tree $T$, called \textit{nodes}, represent the sets obtained from the successive partitionings. They are indexed with POFs $L_a \in \mathcal{L}$. The edges of $T$ are indexed with a pair class-boolean. For each $a \in V(T)$ with two children, the two edges connecting it to its children are both indexed with the same $\Theta$-class but not the same boolean. This $\Theta$-class is denoted by $E\left[a\right]$. To improve the readibility, index $(E\left[a\right],\mbox{true})$ will be denoted by $+E\left[a\right]$ while $(E\left[a\right],\mbox{false})$ becomes $-E\left[a\right]$.
 
 We denote by $\mathcal{L}\left[E_i\right]$ the \textit{adjacency list} of $\Theta$-class $E_i$, {\em i.e.} the list of POFs in $\mathcal{L}$ which contain $E_i$. As at most $d$ classes belong to any POF, the total size of all adjacency lists is upper-bounded by $dn = d\card{\mathcal{L}}$.
 
 We sort the POFs in $\mathcal{L}$ in function of their weights $\omega(L)$ in the decreasing order. This takes $O(n\log n)$. We denote by $\tau_{\omega}$ this ordering. Let $L_0$ be the maximum-weighted POF in $\mathcal{L}$, in other words the first POF in ordering $\tau_{\omega}$.
 
-The description of the construction of $T$ by partition refinement begins. We assign an arbitrary ordering to the $\Theta$-classes which are in $L_0$, for example based on their index. Let $E_{i_1}, E_{i_2},\ldots, E_{i_r}$ be the classes of $L_0$ ordered, $\card{L_0} = r$. First, we split $\mathcal{L}$ in two sets: one with POFs containing $E_{i_i}$, the other with POFs which do not contain $E_{i_i}$. In brief, we obtain $\mathcal{L}\left[E_{i_1}\right]$ and its complementary. Second, we split each of these two sets regarding $\Theta$-class $E_{i_2}$: on one side the POFs containing $E_{i_2}$, on the other side POFs without $E_{i_2}$. We pursue in this way with all classes of $L_0$. At the end, there are at most $2^{\card{L_0}}$ sets in the partition.
+The description of the construction of $T$ by partition refinement begins. We assign an arbitrary ordering to the $\Theta$-classes which are in $L_0$, for example based on their index. Let $E_{i_1}, E_{i_2},\ldots, E_{i_r}$ be the classes of $L_0$ ordered, $\card{L_0} = r$. First, we split $\mathcal{L}$ in two sets: one with POFs containing $E_{i_1}$, the other with POFs which do not contain $E_{i_1}$. In brief, we obtain $\mathcal{L}\left[E_{i_1}\right]$ and its complementary. Second, we split each of these two sets regarding $\Theta$-class $E_{i_2}$: on one side the POFs containing $E_{i_2}$, on the other side POFs without $E_{i_2}$. We pursue in this way with all classes of $L_0$. At the end, there are at most $2^{\card{L_0}}$ sets in the partition.
 
-Until now, we obtained the top $r$ depths of tree $T$. Before pursuing the construction, we define some notation. Let $a_0$ be the root of $T$. Node $a_0$ represents the entire collection $\mathcal{L}$. Let $\Omega$ be the function indicating the sets represented by each node $a \in V(T)$. We have $\Omega(a_0) = \mathcal{L}$. For any $a \in T$, its index $L_a$ is defined as the maximum-weighted POF of its \textit{universe} $\Omega(a)$. So, $L_{a_0} = L_0$. The root $a_0$ has two children, one representing $\mathcal{L}\left[E_{i_1}\right]$ and the other one its complementary as they are the result of a partition refinement from $E_{i_1}$. The edges connecting $a_0$ and its children are indexed by $+E_{i_1}$ and $-E_{i_1}$ respectively. 
+Until now, we obtained the top $r$ depths of tree $T$. Before pursuing the construction, we define some notations. Let $a_0$ be the root of $T$. Node $a_0$ represents the entire collection $\mathcal{L}$. Let $\Omega$ be the function indicating the sets represented by each node $a \in V(T)$. We have $\Omega(a_0) = \mathcal{L}$. For any $a \in T$, its index $L_a$ is defined as the maximum-weighted POF of its \textit{universe} $\Omega(a)$. So, $L_{a_0} = L_0$. The root $a_0$ has two children, one representing $\mathcal{L}\left[E_{i_1}\right]$ and the other one its complementary as they are the result of a partition refinement from $E_{i_1}$. The edges connecting $a_0$ and its children are indexed by $+E_{i_1}$ and $-E_{i_1}$ respectively. 
 
-We denote by $R(a)$ the set of edge indices of the simple path from $a$ to the root $a_0$. For example, for node $a$ with a universe $\Omega(a)$ being the set of POFs which contain  $E_{i_2}$ but not $E_{i_1}$, we have $R(a)=\set{E_{i_1},E_{i_2}}$. We write $R(a) = R^+(a) \cup R^-(a)$, where $R^+(a)$ contains indices with boolean true, while $R^-(a)$ contains indices with boolean false. In this example, $R^+(a) = \set{E_{i_2}}$ and $R^-(a) = \set{E_{i_1}}$. Set $R^+(a)$ is a POF: it contains $\Theta$-classes which are pairwise orthogonal, otherwise $R^+(a)$ would not be the subset of a POF belonging to $\mathcal{L}$.
+We denote by $R(a)$ the set of edge indices of the simple path from $a$ to the root $a_0$. For example, for node $a$ with an universe $\Omega(a)$ being the set of POFs which contain  $E_{i_2}$ but not $E_{i_1}$, we have $R(a)=\set{E_{i_1},E_{i_2}}$. We write $R(a) = R^+(a) \cup R^-(a)$, where $R^+(a)$ contains indices with boolean true, while $R^-(a)$ contains indices with boolean false. In this example, $R^+(a) = \set{E_{i_2}}$ and $R^-(a) = \set{E_{i_1}}$. Set $R^+(a)$ is a POF: it contains $\Theta$-classes which are pairwise orthogonal, otherwise $R^+(a)$ would not be the subset of a POF belonging to $\mathcal{L}$.
 
-We pursue the construction of $T$. For each leaf $a$ of the current tree, we execute the following process: we only consider the $\Theta$-classes of $L_a$ which have not been treated earlier, {\em i.e.} which are not in $R^+(a)$. We order them arbitrarily and we split the universe $\Omega(a)$ successively. We pursue with the new leaves obtained, etc. In this way, tree $T$ can be seen as a stacking of small binary trees (depth at most $d$) that we call \textit{blocks}. For example, the root $a_0$ of $T$ belongs to the top block which is produced from the partition refinement over $\Theta$-classes of $L_0$. In Figure~\ref{subfig:first_layer}, we represent some nodes $a$ of this block and their index $L_a$ with $\card{L_0} = 3$: $i_1 = i$, $i_2 = j$, and $i_3 = \ell$. The leaves of this block both belongs to the top block and are the roots of another block below this one.
+We pursue the construction of $T$. For each leaf $a$ of the current tree, we execute the following process: we only consider the $\Theta$-classes of $L_a$ which have not been treated earlier, {\em i.e.} which are not in $R^+(a)$. We order them arbitrarily and we split the universe $\Omega(a)$ successively. We pursue with the new leaves obtained, etc. In this way, tree $T$ can be seen as a stacking of small binary trees (depth at most $d$) that we call \textit{blocks}. For example, the root $a_0$ of $T$ belongs to the top block which is produced from the partition refinement over $\Theta$-classes of $L_0$. In Figure~\ref{subfig:first_layer}, we represent some nodes $a$ of this block and their index $L_a$ with $\card{L_0} = 3$: $i_1 = i$, $i_2 = j$, and $i_3 = \ell$. The leaves of this block both belong to the top block and are the roots of another block below this one.
 
 \begin{figure}[h]
 \centering
@@ -917,7 +920,7 @@ We pursue the construction of $T$. For each leaf $a$ of the current tree, we exe
 \label{fig:tree_2}
 \end{figure}
 
-Algorithm~\ref{algo:refinement} provides us with the pseudocode of a partition refinement procedure. We call it Ordered Internal Partition Refinement (OIPR). We execute OIPR to obtain tree $T$ with the following inputs: the ground set contains the $\Theta$-classes of $G$ ($W = \mathcal{E}$), the collection is made up the POFs outgoing from $m$ ($\mathcal{S} = \mathcal{L}$) and the ordering of the sets come from the POFs weights ($\tau = \tau_{\omega}$). Each while loop (line~\ref{line:while_loop}) corresponds to the construction of a block of $T$. Such step starts by picking up the first element, say $L_a$, of a non-singleton set of $\mathcal{P}$, say $\Omega(a)$. Then, we consider the $\Theta$-classes of $L_a$ which have not been locally visited, {\em i.e.} which do not belong to $R^+(a)$ (line~\ref{line:local_visit}). For each of these classes $E_j$, we refine the non-singleton $\Omega(a)$: we split it successively with the POFs containing $E_j$ and the POFs not containing $E_j$ (line~\ref{line:refine}).
+Algorithm~\ref{algo:refinement} provides us with the pseudocode of a partition refinement procedure. We call it Ordered Internal Partition Refinement (OIPR). We execute OIPR to obtain tree $T$ with the following input: the ground set contains the $\Theta$-classes of $G$ ($W = \mathcal{E}$), the collection is made up of the POFs outgoing from $m$ ($\mathcal{S} = \mathcal{L}$) and the ordering of the sets come from the POFs weights ($\tau = \tau_{\omega}$). Each while loop (line~\ref{line:while_loop}) corresponds to the construction of a block of $T$. Such step starts by picking up the first element, say $L_a$, of a non-singleton set of $\mathcal{P}$, say $\Omega(a)$. Then, we consider the $\Theta$-classes of $L_a$ which have not been locally visited, {\em i.e.} which do not belong to $R^+(a)$ (line~\ref{line:local_visit}). For each of these classes $E_j$, we refine the non-singleton $\Omega(a)$: we split it successively with the POFs containing $E_j$ and the POFs not containing $E_j$ (line~\ref{line:refine}).
 
 \begin{algorithm}[h]
 \SetKwFor{For}{for}{do}{\nl endfor}
@@ -960,7 +963,7 @@ The time needed to sort all POFs according to their weights, {\em i.e.} in order
 
 Each set obtained from a refinement is represented by a node of $T$. Its children are obtained from a refinement of $\Omega(a)$ with some $\Theta$-class $E_j=E\left[a\right]$: one represents the elements of $\Omega(a)$ containing $E_j$ (the edge from $a$ to this child is indexed with $+E_j$), the other represents the complementary (the edge from $a$ to this child is indexed with $-E_j$).
 
-Now, we give some notation and properties related to the tree $T$. At least one partitioning is executed at each depth of tree $T$ so, as $\mathcal{L}$ is finite, $T$ is too. Its depth is at most $n = \card{\mathcal{L}}$. 
+Now, we give some notations and properties related to the tree $T$. At least one partitioning is executed at each depth of tree $T$ so, as $\mathcal{L}$ is finite, $T$ is too. Its depth is at most $n = \card{\mathcal{L}}$. 
 We say the \textit{layer} of a node $a$ is the number of blocks we pass through when we traverse the simple path between the root and $a$ minus 1. For example, the root has layer 0 and the leaves of the top block have layer 1. We denote by $T^{(j)}$, $j\ge 1$, the subtree of $T$ induced on the set made up of (i) nodes of layer at most $j-1$ and (ii) nodes of layer $j$ which are the roots of a block. In this way, nodes of layer $j$ in $T^{(j)}$ are leaves. The depth of $T^{(j)}$ is at most $jd$, as the depth of each block is at most $d$. 
 %We will show later why it is sufficient to stop the construction at this level.
 
@@ -981,7 +984,7 @@ A constraint pair $(a,X)$ is made up of a node $a \in V(T)$ and a POF $X$ such t
 
 The existence of a constraint pair $(a,X)$ implies that no class $X$ is present in the edge indices from $a_0$ to $a$ in $T$. Moreover, each $\Theta$-class of $X$ is orthogonal to all $\Theta$-classes of $R^+(a)$. We denote by $\mathcal{C}$ the set of constraint pairs. Let $\mathcal{C}^{(j)}$ be the set of constraint pairs $(a,X)$ such that $a\in T^{(j)}$: we have $\mathcal{C}^{(j)} \subseteq \mathcal{C}^{(j+1)} \subseteq \mathcal{C}$.
 
-For any constraint pair $(a,X)$, we denote by $h(a,X)$ a POF $X^*$ disjoint from $X$ in $\Omega(a)$ with the maximum weight. For any POF $L \in \mathcal{L}$, the POF $h(a_0,L)$ is an opposite of $L$ because $\Omega(a_0) = \mathcal{L}$, so we can write, according to Definition~\ref{def:opposite}, $h(a_0,L) = \opp(L)$. Observe that any pair $(a_0,L)$ is a constraint pair as $R(a) = \emptyset$. We present a method to compute all opposites $h(a_0,L)$.
+For any constraint pair $(a,X)$, we denote by $h(a,X)$ a POF $X^*$ disjoint from $X$ in $\Omega(a)$ with the maximum weight. For any POF $L \in \mathcal{L}$, the POF $h(a_0,L)$ is an opposite of $L$ because $\Omega(a_0) = \mathcal{L}$, so we can write, according to Definition~\ref{def:opposite}, $h(a_0,L) = \opp(L)$. Observe that any pair $(a_0,L)$ is a constraint pair as $R(a_0) = \emptyset$. We present a method to compute all opposites $h(a_0,L)$.
 
 The description of the DP algorithm starts. For any constraint pair $(a,X)$, we denote by $a^+$ (resp. $a^-$) the child of $a$ which is the endpoint of the edge indexed with $+E\left[a\right]$ (resp. $-E\left[a\right]$) in $T$ (Figure~\ref{fig:dag}). 
 We define the set $\mathcal{C}(a,X)$ which describes the recursive calls needed to compute $h(a,X)$. Formally, the objective is to make sure that value $h(a,X)$ is exactly a function of all $h(a',X')$, where $(a',X') \in \mathcal{C}(a,X)$.
@@ -1092,7 +1095,7 @@ We define a function $f : \mathcal{L} \rightarrow 2^{\mathcal{C}}$ such that, fo
 Here is the definition of function $I$ and we verify the properties announced above. Let $(a',X') \in \mathcal{C}^{(d)}$: we denote by $a^-$ (resp. $a^+$) his child which is the endpoint of edge indexed by $-E\left[a'\right]$ (resp. $+E\left[a'\right]$). We distinguish three cases: as they are similar to some Cases enumerated the previous subsubsection, we denote them by B*, C* and D* respectively.
 \begin{itemize}
 \item \textbf{Case B*}: $\Theta$-class $E\left[a'\right]$ belongs to $X$, {\em i.e.} $E\left[a'\right] \in X$. We fix $I(a',X') = (a^-,X\backslash \set{E\left[a'\right]})$.
-\item \textbf{Case C*}: $E\left[a'\right] \notin X$ and $E\left[a'\right] \cup X$ is a POF. We fix $I(a',X') = (a^+,,X)$.
+\item \textbf{Case C*}: $E\left[a'\right] \notin X$ and $E\left[a'\right] \cup X$ is a POF. We fix $I(a',X') = (a^+,X)$.
 \item \textbf{Case D*}: $E\left[a'\right] \notin X$ and $E\left[a'\right] \cup X$ is not a POF. We fix $I(a',X') = (a^-,X)$.
 \end{itemize}
 Any constraint pair is concerned by one of these three cases. One can see that if $I(a',X') = (a,X)$ then $a$ is a child of $a'$ and $X \subseteq X'$.
@@ -1231,14 +1234,14 @@ Going further, given a vertex $u \in V$, the maximum distance $d(s,t)$ such that
 
 An algorithm was initially proposed to compute all labels $\opp_u(L)$ consisting in a brute force bounded tree search~\cite{BeHa21}. Its execution time was $\tilde{O}(2^{O(d\log d)}n)$, leading to the global same asymptotic running time (Lemma~\ref{le:slightly_super_exp}) for finding all eccentricities.
 
-Fortunately, the quasilinear time algorithm solving WOPP (Theorem~\ref{th:solving_wopp}, Section~\ref{subsec:partitioning}) offers us the opportunity to decrease the exponential term to a simple exponential function $2^d$.
+Fortunately, the quasilinear time algorithm solving WOPP (Theorem~\ref{th:solving_wopp}, Section~\ref{subsec:partitioning}) offers us the opportunity to decrease the exponential term to a simple exponential function $2^d$. For any $u \in V$, let $G_u =  G\left[V_u\right]$ be the \textit{star} graph of $u$, using a definition from~\cite{ChLaRa19}. Its vertex set $V_u$ is made up of the vertices belonging to a hypercube with basis $u$ in $G$. Graph $G_u$ is the induced subgraph of $G$ on vertex set $V_u$ (see Figure~\ref{fig:compute_opposites} for an example). Chepoi {\em et al.}~\cite{ChLaRa19} showed that graph $G_u$ is a gated/convex subgraph of $G$. This notion of star graph is essential for the proof of the following key theorem.
 
 \begin{theorem}[Computation of labels \opp]
 There is a combinatorial algorithm which determines all labels $\opp_u(L)$ in $\tilde{O}(2^dn)$. 
 \label{th:compute_opp}
 \end{theorem}
 \begin{proof}
-Let $u \in V$: we denote by $N_u$ the number of hypercubes of $G$ with basis $u$. Let $G_u =  G\left[V_u\right]$ be the \textit{star} graph of $u$, using a definition from~\cite{ChLaRa19}. Its vertex set $V_u$ is made up of the vertices belonging to an hypercube with basis $u$ in $G$. Graph $G_u$ is the induced subgraph of $G$ on vertex set $V_u$ (see Figure~\ref{fig:compute_opposites} for an example). Chepoi {\em et al.}~\cite{ChLaRa19} showed that graph $G_u$ is a gated/convex subgraph of $G$. Naturally, convex subgraphs of median graphs are also median by considering the original definition of median graphs (Definition~\ref{def:median}). In brief, $G_u$ is median and all its maximal hypercubes contain a common vertex $u$. From Theorem~\ref{th:simplex}, $G_u$ is a simplex graph.
+Let $u \in V$: we denote by $N_u$ the number of hypercubes of $G$ with basis $u$. Convex subgraphs of median graphs are also median by considering the original definition of median graphs (Definition~\ref{def:median}). Consequently, star graph $G_u$ is median and all its maximal hypercubes contain a common vertex $u$. From Theorem~\ref{th:simplex}, $G_u$ is a simplex graph.
 
 \begin{figure}[h]
 \centering
@@ -1266,7 +1269,7 @@ We associate with any POF $L$ of $G_u$ the weight $\omega_u(L) = \varphi(u,L)$. 
 
 \subsubsection{Anti-ladder labels} \label{subsubsec:anti_ladder}
 
-We terminate with anti-ladder labels $\psi$ which play the converse role of ladder labels $\varphi$. While $\varphi(u,L)$ is defined for POFs $L$ outgoing from $u$, labels $\psi(u,R)$ are defined for POFs $R$ incoming into $u$, {\em i.e.} every $\Theta$-class of the POF has an edge entering $u$. As any such pair $(u,R)$ can be associated with an hypercube of anti-basis $u$ and signature $R$ (Lemma~\ref{le:pof_hypercube}), the total size of $\psi$-labelings is at most $O(2^dn)$ too.
+We terminate with anti-ladder labels $\psi$ which play the converse role of ladder labels $\varphi$. While $\varphi(u,L)$ is defined for POFs $L$ outgoing from $u$, labels $\psi(u,R)$ are defined for POFs $R$ incoming into $u$, {\em i.e.} every $\Theta$-class of the POF has an edge entering $u$. As any such pair $(u,R)$ can be associated with a hypercube of anti-basis $u$ and signature $R$ (Lemma~\ref{le:pof_hypercube}), the total size of $\psi$-labelings is at most $O(2^dn)$ too.
 
 The notion of \textit{milestone} intervenes in the definition of labels $\psi$. We consider two vertices $u,v$ such that $u \in I(v_0,v)$. Milestones are defined recursively.
 
@@ -1356,7 +1359,7 @@ We simply determine the labels $\varphi$, $\opp$ and $\psi$ with the algorithms 
 
 \begin{lemma}\label{lem:guigui-1}
 Let $G$ be a median graph.
-For every $1 \leq i \leq q$, let $v \in V(H_i')$ be arbitrary, and let $v^* \in \partial H_i''$ be its gate.
+For every $1 \leq i \leq q$, let $v \in V(H_i')$ be arbitrary, and let $v^*$ be its gate in $\partial H_i''$.
 Then, $\ecc(v) = \max\{\ecc_{H_i'}(v), d(v,v^*) + \ecc_{H_i''}(v^*)\}$.
 \end{lemma}
 \begin{proof}
@@ -1385,14 +1388,10 @@ In particular, since $H$ is isometric in $G$, two edges of $H$ are in the same $
 \end{proof}
 
 \begin{lemma}\label{lem:guigui-3}
-Let $G$ be a median graph, and let $D := \max\{ |E_i| \mid 1 \leq i \leq q\}$ be the maximum cardinality of a $\Theta$-class of $G$. Then, $d = \dim(G) \leq \lfloor\log{D}\rfloor + 1$, and this bound is sharp.
+Let $G$ be a median graph, and let $D := \max\{ |E_i| \mid 1 \leq i \leq q\}$ be the maximum cardinality of a $\Theta$-class of $G$. Then, $d = \dim(G) \leq \lfloor\log{D}\rfloor + 1$.
 \end{lemma}
 \begin{proof}
-Let $Q_d$ be an induced $d$-dimensional hypercube of $G$.
-Every $\Theta$-class of $Q_d$ contains $2^{d-1}$ edges (namely, for some fixed choice of $j \in \{1,\ldots,d\}$, it contains all edges $uv$ such that the binary representations of $u$ and $v$ only differ in position $j$).
-By Lemma~\ref{lem:guigui-2}, any $\Theta$-class of $Q_d$ is contained in a $\Theta$-class of $G$.
-As a result, $2^{d-1} \leq D$.
-The bound is reached if $G = Q_d$.
+Any induced $d$-dimensional hypercube of $G$ contains exactly $2^{d-1}$ edges of its $\Theta$-classes, so $2^{d-1}\le D$.
 \end{proof}
 
 \section{Appendix for Section~\ref{sec:discussion}} \label{asec:discussion}
