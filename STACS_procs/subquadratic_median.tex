@@ -175,7 +175,8 @@ All these outcomes put in evidence a relationship between the design of linear-t
 
 \subsection{Organization}
 
-In Section~\ref{sec:median}, we remind the definition of median graphs. The well-known properties and concepts related to them are listed, among them $\Theta$-classes, signature, and POFs. Section~\ref{sec:simplex} summarizes our contribution on simplex graphs. In Section~\ref{sec:subquadratic}, we show how to obtain a linear-time simple-exponential-FPT algorithm for all eccentricities of a median graph, parameterized by the dimension $d$. Thanks to it, we propose a dynamic programming procedure to reduce the computation of eccentricities of any median graph to the same problem on a collection of median subgraphs of sub-logarithmic dimension. Eventually, we give in Section~\ref{sec:conclusion} some directions of research which could follow the contributions of this article. 
+In Section~\ref{sec:median}, we remind the definition of median graphs. The well-known properties and concepts related to them are listed, among them $\Theta$-classes, signature, and POFs. Section~\ref{sec:simplex} summarizes our contribution on simplex graphs. In Section~\ref{sec:subquadratic}, we show how to obtain a linear-time simple-exponential-FPT algorithm for all eccentricities of a median graph, parameterized by the dimension $d$. Thanks to it, we propose a dynamic programming procedure to reduce the computation of eccentricities of any median graph to the same problem on a collection of median subgraphs of sub-logarithmic dimension. 
+%Eventually, we give in Section~\ref{sec:conclusion} some directions of research which could follow the contributions of this article. 
 
 \section{Median graphs} \label{sec:median}
 
@@ -318,17 +319,17 @@ We say that a set of classes $X \subseteq \mathcal{E}$ is a {\em Pairwise Orthog
 
 For any induced hypercube of $G$, its \textit{basis} (resp. \textit{anti-basis}) is the closest vertex (resp. farthest) to $v_0$ in it. All edges of the hypercube indicent to the basis are outgoing from it. Hypercubes are in bijection with pairs $(u,L)$, where $u$ is a vertex (the basis of the hypercube) and $L$ is a POF outgoing from $u$ (the \textit{signature} of the hypercube).
 
-The full version of this subsection is put in Appendix~\ref{asubsec:orthogonal}.
+The full version of this subsection is put in Appendix~\ref{asec:median}.
 
-\subsection{Maximal POFs} \label{subsec:max_pofs}
-
-We terminate this preliminary section with a few words on maximal POFs, {\em i.e.} POFs $X$ such that there is no other POF $Y \supsetneq X$. We highlight a natural bijection between maximal POFs and maximal hypercubes. Its proof is put in Appendix~\ref{asubsec:max_pofs}.
-
-\begin{theorem}[\ref{th:maximal_pofs}]
-For any maximal induced hypercube, the $\Theta$-classes of its edges form a maximal POF.
-Conversely, for any maximal POF $X$, there exists an unique hypercube of signature $X$. 
-\label{th:maximal_pofs_teaser}
-\end{theorem}
+%\subsection{Maximal POFs} \label{subsec:max_pofs}
+%
+%We terminate this preliminary section with a few words on maximal POFs, {\em i.e.} POFs $X$ such that there is no other POF $Y \supsetneq X$. We highlight a natural bijection between maximal POFs and maximal hypercubes. Its proof is put in Appendix~\ref{asubsec:max_pofs}.
+%
+%\begin{theorem}[\ref{th:maximal_pofs}]
+%For any maximal induced hypercube, the $\Theta$-classes of its edges form a maximal POF.
+%Conversely, for any maximal POF $X$, there exists an unique hypercube of signature $X$. 
+%\label{th:maximal_pofs_teaser}
+%\end{theorem}
 
 %%%%%%%%%
 
@@ -354,12 +355,84 @@ Let $G$ be a median graph. The following statements are equivalent:
 \label{th:simplex}
 \end{theorem}
 
-There is a combinatorial algorithm running in quasilinear time which, given a simplex graphs and positive integer weights $\omega_v$ associated with each vertex $v$, returns a list of \textit{opposites} $\opp(v)$, where $\opp(v)$ is the maximum-weighted vertex such that $v_0 \in I(v,\opp(v))$. Applying it for the case $\omega_v = \card{\mathcal{E}^-(v)}$ allows us to
-compute the diameter and all eccentricities of simplex graphs in quasilinear time.
+In this section only, on simplex graphs, the canonical basepoint $v_0$ is not selected arbitrarily. We fix $v_0$ as a vertex adjacent to all $\Theta$-classes, as put in evidence by Theorem~\ref{th:simplex}. We call $v_0$ the \textit{central vertex} of the simplex graph.
+
+%What Theorem~\ref{th:simplex} says is that any simplex graph can be seen as a set of maximal POFs (or hypercubes) that are ``medianly'' assembled. Indeed, one cannot define a simplex graph given any collection of sets - excluding subsets - representing maximal POFs. Consider as an example the collection $\set{\set{E_1,E_2},\set{E_2,E_3},\set{E_3,E_1}}$: it would produce a simplex graph with 3 squares with basis $v_0$ and sharing pairwise an edge. This graph is $Q_3^-$ (the 3-cube minus a vertex) and is not median. The collection implies that $E_1,E_2,E_3$ are pairwise orthogonal, so $\set{E_1,E_2,E_3}$ should be the maximal POF here.
+
+%The most obvious example of median graph which is not simplex is certainly the path $P_4$. Indeed, it has three $\Theta$-classes which are all pairwise parallel. For any vertex of $P_4$, there exists a $\Theta$-class which is not adjacent to it.
+
+%The proof (2)$\Rightarrow$(1) reveals the reverse application of $K$. 
+
+\begin{definition}[Crossing graphs~\cite{BaVe89,KlMu02}]
+Let $G$ be a median graph. Its \textit{crossing graph} $G^{\#}$ is the graph obtained by considering $\Theta$-classes as its vertices and such that two $\Theta$-classes are adjacent if they are orthogonal.
+\label{def:crossing}
+\end{definition}
+
+Restricted to simplex graphs, this transformation is the reverse of $K$: indeed, as stated in~\cite{KlMu02}, $G = K(G)^{\#}$. The clique number of $G^{\#}$ is exactly the dimension of median graph $G$. For example, the crossing graph of a cube-free median graph contains no triangle. Each simplex graph admits a central vertex ($v_0$ in Theorem~\ref{th:simplex}) which represents the empty clique of $G^{\#}$.
+
+Now, we focus on the problem of determining a diametral pair of a simplex graph $G$ and more generally all eccentricities. Observe that the distance between the central vertex $v_0$ and any vertex $u$ of $G$ can be deduced directly from the edges incoming into $u$. We state that $\sigma_{v_0,u} = \mathcal{E}^-(u)$. This is a consequence of Theorem~\ref{th:simplex}: all $\Theta$-classes of $\mathcal{E}^-(u)$ are adjacent to $v_0$, so $v_0$ is the basis of the hypercube with signature $\mathcal{E}^-(u)$ and anti-basis $u$. A shortest $(v_0,u)$-path is thus made up of edges of this hypercube. The distance $d(v_0,u)$ is equal to its dimension: $d(v_0,u) = \card{\mathcal{E}^-(u)}$.
+
+A key result is the fact that the central vertex $v_0$ of the simplex graph belongs to the interval $I(u,v)$ of any pair $u,v$ satisfying $d(u,v) = \ecc(u)$.
+
+\begin{lemma}
+Let $u,v \in V(G)$ such that $d(u,v) = \ecc(u)$. Then, $v_0 \in I(u,v)$.
+\label{le:center_simplex}
+\end{lemma}
+%\begin{proof}
+%Let $H$ be the graph such that $G = K(H)$. The distance $d(u,v)$ is equal to the number of $\Theta$-classes of $G$ separating them, so $d(u,v) = \card{\mathcal{E}^-(u) \bigtriangleup \mathcal{E}^-(v)}$. Let $w$ be the vertex of $G$ such that $\mathcal{E}^-(w) = \mathcal{E}^-(v) \backslash \mathcal{E}^-(u)$. If $\mathcal{E}^-(u) \cap \mathcal{E}^-(v) \neq \emptyset$, then $d(u,w) = \card{\mathcal{E}^-(u) \bigtriangleup \mathcal{E}^-(w)} = \card{\mathcal{E}^-(u)} + \card{\mathcal{E}^-(w)} > \card{\mathcal{E}^-(u) \backslash \mathcal{E}^-(v)} + \card{\mathcal{E}^-(v) \backslash \mathcal{E}^-(u)} = d(u,v)$. So, $d(u,w) > \ecc(u)$, a contradiction.
+%\end{proof}
+
+%\begin{figure}[h]
+%\centering
+%\scalebox{0.8}{\input{tikz/center_simplex.tex}}
+%\caption{Illustration of the contradiction in the proof of Lemma~\ref{le:center_simplex}.}
+%\label{fig:center_simplex}
+%\end{figure}
+
+%Figure~\ref{fig:center_simplex} shows a simple example with $m=m(u,v,v_0)\neq v_0$ and $d(v_0,m) = 1$. The edges are oriented according to the $v_0$-orientation. The $\Theta$-class $E_i$ in $\sigma_{v_0,m}$ is present alongside the interval $I(m,v)$. The contradiction of the previous proof comes from the fact that the shortest $(u,v)$-path could be extended with the vertex $w$ which is the neighbor of $v$ in $\partial H_i'$.
+
+Two vertices $u,v$ forming a diametral pair cannot share a common incoming $\Theta$-class $E_i$, in other words $\mathcal{E}^-(u) \cap \mathcal{E}^-(v) = \emptyset$, otherwise $m = m(u,v,v_0) \in I(u,v) \subseteq H_i''$ and $v_0 \in H_i'$. Moreover, the distance $d(u,v)$ is exactly $\card{\mathcal{E}^-(u)} + \card{\mathcal{E}^-(v)}$ because $\card{\mathcal{E}^-(u)} = d(v_0,u)$ and $\card{\mathcal{E}^-(v)} = d(v_0,v)$. So, determining the diameter of a simplex graph $G$ is equivalent to maximizing the sum $\card{X} + \card{Y}$, where $X$ and $Y$ are two POFs of $G$ that are disjoint. Computing the diameter is equivalent to find the largest pair of disjoint cliques in the crossing graph $G^{\#}$. Similarly, the eccentricity of a vertex $u$ is exactly the size $\card{\mathcal{E}^-(u)} + \card{\mathcal{E}^-(v)}$ of the largest pair of disjoint POFs $(\mathcal{E}^-(u),\mathcal{E}^-(v))$.
+Now, we can define the notion of \textit{opposite}.
+
+\begin{definition}
+Let $G$ be a simplex graph and $X$ a POF of $G$. We denote by $\opp(X)$ the \textit{opposite} of $X$, {\em i.e.} the POF~ $Y$ disjoint from $X$ with the maximum cardinality.
+$$
+\opp(X) = \argmax_{Y \cap X = \emptyset} \card{Y}.
+$$
+\label{def:opposite}
+\end{definition}
+
+With this definition, the eccentricity of a vertex $u$, if we fix $X_u = \mathcal{E}^-(u)$, is written $\ecc(u) = \card{X_u} + \card{\opp(X_u)}$. Hence, the diameter of the simplex graph $G$ can be written as the size of the largest pair POF-opposite: $\diam(G) = \max_{X\in \mathcal{L}}( \card{X} + \card{\opp(X)})$.
+
+We propose now the definition of two problems on simplex graphs. The first one, called \textsc{Opposites} (OPP) consists in finding all pairs POF-opposite. Its output has thus a linear size. Given the solution of OPP on graph $G$, one can deduce both the diameter and all eccentricities in $O(n)$ time with the formulae presented above.
+
+\begin{definition}[OPP]~
+
+\textbf{Input}: Simplex graph $G$, central vertex $v_0$.
+
+\textbf{Output}: For each POF $X$, its opposite $\opp(X)$.
+\label{def:dpp}
+\end{definition}
+
+We define an even larger version of the problem where a positive integer weight is associated with each POF. We call it \textsc{Weighted Opposites} (WOPP).
+
+\begin{definition}[WOPP]~
+
+\textbf{Input}: Simplex graph $G$, central vertex $v_0$, weight function $\omega : \mathcal{L} \rightarrow \mathbb{N}^+$.
+
+\textbf{Output}: For each POF $X$, its weighted opposite $Y$ maximizing $\omega(Y)$ such that $X \cap Y = \emptyset$.
+\label{def:wdpp}
+\end{definition}
+
+Obviously, OPP is a special case of WOPP when $\omega$ is the cardinality function. We show that WOPP can be solved in quasilinear time $O((d^3+\log n)n)$. As a consequence, all eccentricities of a simplex graph $G$ can also be determined with such time complexity. 
+%Moreover, we will see in Section~\ref{sec:subquadratic} that solving WOPP in quasilinear time implies that all eccentricities of any median graph can be computed with a simple exponential time $2^{O(d)}n$, improving the slightly super-exponential time proposed in~\cite{BeHa21}.
+
+%There is a combinatorial algorithm running in quasilinear time which, given a simplex graphs and positive integer weights $\omega_v$ associated with each vertex $v$, returns a list of \textit{opposites} $\opp(v)$, where $\opp(v)$ is the maximum-weighted vertex such that $v_0 \in I(v,\opp(v))$. Applying it for the case $\omega_v = \card{\mathcal{E}^-(v)}$ allows us to
+%compute the diameter and all eccentricities of simplex graphs in quasilinear time.
 %Properties of simplex graphs, the design of this algorithm and its analysis are put in Appendix~\ref{asec:simplex}. 
 
 \begin{theorem}
-There is a combinatorial algorithm determining all eccentricities of a simplex graph in time $O((d^3+\log n)n)$.
+There is a combinatorial algorithm solving WOPP in time $O((d^3+\log n)n)$. Consequently, it determines all eccentricities of a simplex graph with this running time.
 \label{th:linear_simplex_teaser}
 \end{theorem}
 
@@ -367,7 +440,7 @@ There is a combinatorial algorithm determining all eccentricities of a simplex g
 
 This section introduces the design of algorithms computing all eccentricities for the whole class of  median graphs (not only simplex graphs). We begin in Section~\ref{subsec:constant_dim} with the proposal of a linear-time FPT algorithm, parameterized by the dimension $d$, running in $2^{O(d)}n$. It is based on some techniques of a paper of the literature~\cite{BeHa21} which provides a slightly super-exponential time algorithm - running in $2^{O(d\log d)}n$ - for the same problem. We prove that replacing one step of this procedure by the partitioning conceived in Section~\ref{sec:simplex} allows us to decrease the exponential dependence on $d$.
 
- Thanks to this outcome, in Section~\ref{subsec:reduction}, we are able to design a first subquadratic-time algorithm for all median graphs running in $\tilde{O}(n^{\frac{5}{3}})$.
+Thanks to this outcome, in Section~\ref{subsec:reduction}, we are able to design a first subquadratic-time algorithm for all median graphs running in $\tilde{O}(n^{\frac{5}{3}})$. The proof of the Lemmas which are not given in this subsection are put in Appendix~\ref{asec:subquadratic}. 
 
 \subsection{Linear FPT algorithm for constant-dimension median graphs} \label{subsec:constant_dim}
 
@@ -378,7 +451,7 @@ There is a combinatorial algorithm computing all eccentricities in a median grap
 \label{le:slightly_super_exp}
 \end{lemma}
 
-Some parts of this subsection are redundant with~\cite{BeHa21}, however we keep this subsection self-contained. The new outcomes presented are Theorems~\ref{th:compute_opp} and~\ref{th:simple_ecc}.
+Some parts of this subsection are redundant with~\cite{BeHa21}, however we keep this subsection self-contained. The new outcomes presented are Theorems~\ref{th:compute_opp_teaser} and~\ref{th:simple_ecc}.
 
 The algorithm evoked by Lemma~\ref{le:slightly_super_exp} consists in the computation of three kinds of labels: \textit{ladder} labels $\varphi$, \textit{opposite} labels $\opp$ and \textit{anti-ladder} labels $\psi$. The order in which they are given correspond to their respective dependence: $\opp$-labelings are functions of labels $\varphi$ and $\psi$-labelings are functions of both labels $\varphi$ and $\opp$.
 The definition of $\opp$-labelings on general median graphs is closely related to the computation of eccentricities on simplex graphs evoked in Section~\ref{sec:simplex}.
@@ -472,34 +545,8 @@ Fortunately, the quasilinear time algorithm determining the eccentricities on si
 
 \begin{theorem}[Computation of labels \opp]
 There is a combinatorial algorithm which determines all labels $\opp_u(L)$ in $\tilde{O}(2^dn)$. 
-\label{th:compute_opp}
+\label{th:compute_opp_teaser}
 \end{theorem}
-\begin{proof}
-Let $u \in V$: we denote by $N_u$ the number of hypercubes of $G$ with basis $u$. Convex subgraphs of median graphs are also median by considering the original definition of median graphs (Definition~\ref{def:median}). Consequently, star graph $G_u$ is median and all its maximal hypercubes contain a common vertex $u$. From Theorem~\ref{th:simplex}, $G_u$ is a simplex graph.
-
-\begin{figure}[h]
-\centering
-\begin{subfigure}[b]{0.54\columnwidth}
-\centering
-\scalebox{0.8}{\input{tikz/compute_opposites_1}}
-\caption{A $v_0$-oriented median graph $G$ and a vertex $u \in V$}
-\label{subfig:compute_opposites_1}
-\end{subfigure}
-\begin{subfigure}[b]{0.44\columnwidth}
-\centering
-\scalebox{0.8}{\input{tikz/compute_opposites_2}}
-\caption{Star graph $G_u$}
-\label{subfig:compute_opposites_2}
-\end{subfigure}
-
-\caption{Example of star graph $G_u$}
-\label{fig:compute_opposites}
-\end{figure}
-
-Any pair $(u,L)$ of $G$, where $L$ is a POF outgoing from $u$ in $G$, can be associated to a unique hypercube with signature $L$ and basis $u$. Thus, there is a natural bijection between (i) the POFs of $G_u$ (ii) the vertices of $G_u$ and (iii) the POFs $L$ of $G$ outgoing from $u$. Hence, $\card{V_u} = N_u$.
-
-We associate with any POF $L$ of $G_u$ the weight $\omega_u(L) = \varphi(u,L)$. We apply the algorithm evoked in Theorem~\ref{th:linear_simplex_teaser}. The opposite computed with that configuration correspond exactly to the labels $\opp_u(L)$: a POF $L'$ disjoint from $L$ and maximizing $\varphi(u,L')$ among all POFs outgoing from $u$. The running time of the algorithm is $O((d^3+\log \card{V_u})\card{V_u}) = O((d^3+\log n)N_u)$. Doing it for every vertex $u$ of $G$, we obtain all opposite labels of $G$ in $O(d^3+\log n)2^dn)$ as $\sum_{u \in V} N_u = 2^dn$ (Lemma~\ref{le:number_hypercubes}).
-\end{proof}
 
 \subsubsection{Anti-ladder labels} \label{subsubsec:anti_ladder}
 
@@ -585,9 +632,9 @@ In other words, the eccentricity of $u$ is the maximum label $\varphi$ or $\psi$
 There is a combinatorial algorithm computing the list of all eccentricities of a median graph $G$ in time $\tilde{O}(2^{2d}n)$.
 \label{th:simple_ecc}
 \end{theorem}
-\begin{proof}
-We simply determine the labels $\varphi$, $\opp$ and $\psi$ with the algorithms mentioned in Theorem~\ref{th:compute_phi},~\ref{th:compute_opp}, and~\ref{th:compute_psi}. Thanks to the time improvement obtained for the computation of opposite labels, the overall running time to compute the labels is only $\tilde{O}(2^{2d}n)$. Then, for each vertex $u$, Equation~\eqref{eq:ecc_labels} guides us to obtain its eccentricity. We take the maximum over all labels $\varphi(u,L)$ - they are at most $N_u$ - and all labels $\psi(u,R)$ - they are at most $2^d$. As $\sum_u N_u \le 2^dn$, the execution time of this operation on all vertices is $\tilde{O}(2^dn)$. Therefore, it does not overpass the time complexity needed to determine the labels.
-\end{proof}
+%\begin{proof}
+%We simply determine the labels $\varphi$, $\opp$ and $\psi$ with the algorithms mentioned in Theorem~\ref{th:compute_phi},~\ref{th:compute_opp_teaser}, and~\ref{th:compute_psi}. Thanks to the time improvement obtained for the computation of opposite labels, the overall running time to compute the labels is only $\tilde{O}(2^{2d}n)$. Then, for each vertex $u$, Equation~\eqref{eq:ecc_labels} guides us to obtain its eccentricity. We take the maximum over all labels $\varphi(u,L)$ - they are at most $N_u$ - and all labels $\psi(u,R)$ - they are at most $2^d$. As $\sum_u N_u \le 2^dn$, the execution time of this operation on all vertices is $\tilde{O}(2^dn)$. Therefore, it does not overpass the time complexity needed to determine the labels.
+%\end{proof}
 
 \subsection{Tackling the general case} \label{subsec:reduction}
 
@@ -596,7 +643,7 @@ This runtime stays subquadratic in $n$ as long as $d < \alpha \cdot \log{n}$, fo
 In what follows, we present a simple partitioning scheme for median graphs into convex subgraphs of dimension at most $\alpha \cdot \log{n}$, for an arbitrary value of $\alpha \leq 1$.
 By doing so, we obtain (in combination with Theorem~\ref{th:simple_ecc}) the first known subquadratic-time algorithm for computing all eccentricities in a median graph.
 
-The proof of the Lemmas which are not given in this subsection are put in Appendix~\ref{asec:subquadratic}. We start with a simple relation between the eccentricity function of a median graph and the respective eccentricity functions of any two complementary halfspaces.
+We start with a simple relation between the eccentricity function of a median graph and the respective eccentricity functions of any two complementary halfspaces.
 
 \begin{lemma}[\ref{lem:guigui-1}]\label{lem:guigui-1_teaser}
 Let $G$ be a median graph.
@@ -805,14 +852,16 @@ This result directly follows from Theorem~\ref{th:simple_ecc} with Lemma~\ref{le
 %If $\frac{d}{\log n} \le a^*$, then apply the linear FPT algorithm evoked in Theorem~\ref{th:simple_ecc_teaser}. Otherwise, if $\frac{d}{\log n} > a^*$, then use the enumeration of MOPs (Theorem~\ref{th:labels_mops_teaser}) and apply the reduction scheme proposed in Lemma~\ref{lem:guigui-4}.
 %\end{proof}
 
-\section{Conclusion} \label{sec:conclusion}
+%\section{Conclusion} \label{sec:conclusion}
 
 As a natural extension of this work, the question of designing a linear-time or quasilinear-time algorithm to compute
-the diameter and all eccentricities of median graphs is now open. With the recursive splitting procedure of Lemma~\ref{lem:guigui-4}, unfortunately, the best execution time we could obtain is $\tilde{O}(n^{\frac{3}{2}})$. Reaching this bound could represent a first reasonable objective: it would ``suffice'' to propose a FPT combinatorial algorithm which computes all eccentricities in $\tilde{O}(2^dn)$ in order to obtain such time complexity. We see the MOP-approach as a gateway to identify such a procedure.
+the diameter and all eccentricities of median graphs is now open. With the recursive splitting procedure of Lemma~\ref{lem:guigui-4}, unfortunately, the best execution time we could obtain is $\tilde{O}(n^{\frac{3}{2}})$. Reaching this bound could represent a first reasonable objective: it would ``suffice'' to propose a FPT combinatorial algorithm which computes all eccentricities in $\tilde{O}(2^dn)$ in order to obtain such time complexity. 
+%We see the MOP-approach as a gateway to identify such a procedure.
 
-Another - certainly easier - objective after this work is to adapt the recursive splitting of Lemma~\ref{lem:guigui-4} for reach centralities. We tried to define a weighted version of the reach centralities problem in order to fit them to the halfspace separation, but this task seems to be not so easy. Our hope is to obtain a subquadratic-time algorithm computing reach centralities in median graphs. 
+%Another - certainly easier - objective after this work is to adapt the recursive splitting of Lemma~\ref{lem:guigui-4} for reach centralities. We tried to define a weighted version of the reach centralities problem in order to fit them to the halfspace separation, but this task seems to be not so easy. Our hope is to obtain a subquadratic-time algorithm computing reach centralities in median graphs. 
 
-Eventually, we note two lines of research on which this paper could have some influence: (i) the study of efficient algorithms for the computation of other metric parameters on median graphs (perhaps, the \textit{betweenness centrality}~\cite{AbGrWi15}) and (ii) the design of subquadratic-time algorithms for the diameter and all eccentricities on larger families of graphs (\textit{almost-median} or \textit{semi-median} graphs~\cite{Br07,KlSh12} for example). Concerning the betweenness centrality, our intuition is that the labeling framework introduced~\cite{BeHa21} does not suffice to describe the number of $(u,v)$-paths passing through some vertex, which is exactly what betweenness centrality assesses.
+Eventually, we note two lines of research on which this paper could have some influence: (i) the study of efficient algorithms for the computation of other metric parameters on median graphs (perhaps, the \textit{betweenness centrality}~\cite{AbGrWi15}) and (ii) the design of subquadratic-time algorithms for the diameter and all eccentricities on larger families of graphs (\textit{almost-median} or \textit{semi-median} graphs~\cite{Br07,KlSh12} for example). 
+%Concerning the betweenness centrality, our intuition is that the labeling framework introduced~\cite{BeHa21} does not suffice to describe the number of $(u,v)$-paths passing through some vertex, which is exactly what betweenness centrality assesses.
 
 \newpage
 
@@ -823,9 +872,7 @@ Eventually, we note two lines of research on which this paper could have some in
 
 \appendix
 
-\section{Appendix for Section~\ref{sec:median}} \label{asec:median}
-
-\subsection{Orthogonal $\Theta$-classes and hypercubes} \label{asubsec:orthogonal}
+\section{Orthogonal $\Theta$-classes and hypercubes} \label{asec:median}
 
 We present now another important notion on median graphs: \textit{orthogonality}. In~\cite{Ko09}, Kovse studied a relationship between \textit{splits} which refer to the halfspaces of $\Theta$-classes. It says that two splits $\set{H_i',H_i''}$ and $\set{H_j',H_j''}$ are \textit{incompatible} if the four sets $H_i' \cap H_j'$, $H_i'' \cap H_j'$, $H_i' \cap H_j''$, and $H_i'' \cap H_j''$ are nonempty. Another definition was proven equivalent to this one.
 
@@ -933,30 +980,61 @@ We can enumerate all triplets $(v,u,\widehat{\mathcal{E}})$, where $v$ is the an
 
 The enumeration of hypercubes is thus executed in linear time for median graphs with constant dimension. In summary, given any median graph, one can compute the set of $\Theta$-classes and their orthogonality relationship (for each $E_i$, the set of $\Theta$-classes orthogonal to $E_i$) in linear time, and the set of hypercubes with its basis, anti-basis and signature in $\tilde{O}(2^dn)$.
 
-\subsection{Maximal POFs} \label{asubsec:max_pofs}
+%\subsection{Maximal POFs} \label{asubsec:max_pofs}
+%
+%\begin{theorem}[Maximal POFs and hypercubes]
+%For any maximal induced hypercube, the $\Theta$-classes of its edges form a maximal POF.
+%Conversely, for any maximal POF $X$, there exists a unique hypercube of signature $X$. Its anti-basis is the vertex $v$ such that $\mathcal{E}^-(v) = X$. 
+%\label{th:maximal_pofs}
+%\end{theorem}
+%\begin{proof}
+%Let $Q$ be a maximal hypercube and $X_Q$ its signature. We begin with the proof that $X_Q$ is a maximal POF. Assume that $Y \supsetneq X_Q$. As $Y$ is a POF, there is a vertex $v_Y \in V$ satisfying $\mathcal{E}^-(v_Y) = Y$. Similarly, we denote by $v_X$ the vertex such that $\mathcal{E}^-(v_X) = X_Q$. Both $v_X$ and $v_Y$ belong to the boundary of any $\Theta$-class of $X_Q$ (the one which is the farthest from $v_0$). In brief, 
+%\begin{equation}v_X,v_Y \in \bigcap_{E_i \in X_Q} \partial H_i''
+%\label{eq:bigcap_gated}
+%\end{equation}
+%As every $\partial H_i''$ is gated, then the intersection written in Eq.~\eqref{eq:bigcap_gated} is convex/gated too. Thus, the shortest $(v_X,v_Y)$-path is entirely contained in set $\bigcap_{X_Q} \partial H_i''$. Let $(v_X,z)$ be the first edge of this path and $E_j$ the $\Theta$-class of this edge. Each $\Theta$-class form an isomorphism between its two boundaries (Lemma~\ref{le:boundaries}): as $z \in \bigcap_{X_Q} \partial H_i''$, there is a hypercube isomorphic to $Q$ in the boundary of $E_j$ containing $z$. Therefore, there is a hypercube of dimension $\card{X_Q}+1$ containing all vertices of $Q$. This yields a contradiction as $Q$ is supposed to be maximal.
+%
+%Conversely, let $Q$ be a hypercube and assume that its signature $X_Q$ is a maximal POF. We suppose that there is a second hypercube $Q' \neq Q$ such that $X_Q = X_{Q'}$. Then, the set $\bigcap_{X_Q} \partial H_i''$ contains at least two elements: the anti-bases of hypercubes $Q$ and $Q'$. Using the same argument as above, we can put in evidence an edge with two endpoints in $\bigcap_{X_Q} \partial H_i''$. The $\Theta$-class of this edge is thus orthogonal of any class $E_i$ of $X_Q$ which defines an isomorphism between $\partial H_i'$ and $\partial H_i''$. Consequently, we obtain a POF superset of $X_Q$, a contradiction.
+%
+%For any POF $X$, there is at least one hypercube with signature $X$ such that its anti-basis $v$ verifies $\mathcal{E}^-(v) = X$ according to Lemma~\ref{le:pof_hypercube}. In summary, any maximal POF $X$ can be associated with an unique hypercube of signature $X$.
+%\end{proof}
+%
+%Figure~\ref{subfig:maximal_pof} illustrates this proof with two squares $Q$ and $Q'$ with the same signature $\set{E_i,E_h}$. One can observe the appearance of a hypercube of larger dimension containing $Q$, giving evidence of the non-maximality of $X_Q$.
+%
+%The number of maximal hypercubes in a median graph is thus equal to the number of maximal POFs, which is itself at most linear in the number of vertices.
 
-\begin{theorem}[Maximal POFs and hypercubes]
-For any maximal induced hypercube, the $\Theta$-classes of its edges form a maximal POF.
-Conversely, for any maximal POF $X$, there exists a unique hypercube of signature $X$. Its anti-basis is the vertex $v$ such that $\mathcal{E}^-(v) = X$. 
-\label{th:maximal_pofs}
+\section{Proofs of Section~\ref{sec:subquadratic}} \label{asec:subquadratic}
+
+\begin{theorem}[Computation of labels \opp]
+There is a combinatorial algorithm which determines all labels $\opp_u(L)$ in $\tilde{O}(2^dn)$. 
+\label{th:compute_opp}
 \end{theorem}
 \begin{proof}
-Let $Q$ be a maximal hypercube and $X_Q$ its signature. We begin with the proof that $X_Q$ is a maximal POF. Assume that $Y \supsetneq X_Q$. As $Y$ is a POF, there is a vertex $v_Y \in V$ satisfying $\mathcal{E}^-(v_Y) = Y$. Similarly, we denote by $v_X$ the vertex such that $\mathcal{E}^-(v_X) = X_Q$. Both $v_X$ and $v_Y$ belong to the boundary of any $\Theta$-class of $X_Q$ (the one which is the farthest from $v_0$). In brief, 
-\begin{equation}v_X,v_Y \in \bigcap_{E_i \in X_Q} \partial H_i''
-\label{eq:bigcap_gated}
-\end{equation}
-As every $\partial H_i''$ is gated, then the intersection written in Eq.~\eqref{eq:bigcap_gated} is convex/gated too. Thus, the shortest $(v_X,v_Y)$-path is entirely contained in set $\bigcap_{X_Q} \partial H_i''$. Let $(v_X,z)$ be the first edge of this path and $E_j$ the $\Theta$-class of this edge. Each $\Theta$-class form an isomorphism between its two boundaries (Lemma~\ref{le:boundaries}): as $z \in \bigcap_{X_Q} \partial H_i''$, there is a hypercube isomorphic to $Q$ in the boundary of $E_j$ containing $z$. Therefore, there is a hypercube of dimension $\card{X_Q}+1$ containing all vertices of $Q$. This yields a contradiction as $Q$ is supposed to be maximal.
+Let $u \in V$: we denote by $N_u$ the number of hypercubes of $G$ with basis $u$. Convex subgraphs of median graphs are also median by considering the original definition of median graphs (Definition~\ref{def:median}). Consequently, star graph $G_u$ is median and all its maximal hypercubes contain a common vertex $u$. From Theorem~\ref{th:simplex}, $G_u$ is a simplex graph.
 
-Conversely, let $Q$ be a hypercube and assume that its signature $X_Q$ is a maximal POF. We suppose that there is a second hypercube $Q' \neq Q$ such that $X_Q = X_{Q'}$. Then, the set $\bigcap_{X_Q} \partial H_i''$ contains at least two elements: the anti-bases of hypercubes $Q$ and $Q'$. Using the same argument as above, we can put in evidence an edge with two endpoints in $\bigcap_{X_Q} \partial H_i''$. The $\Theta$-class of this edge is thus orthogonal of any class $E_i$ of $X_Q$ which defines an isomorphism between $\partial H_i'$ and $\partial H_i''$. Consequently, we obtain a POF superset of $X_Q$, a contradiction.
+\begin{figure}[h]
+\centering
+\begin{subfigure}[b]{0.54\columnwidth}
+\centering
+\scalebox{0.8}{\input{tikz/compute_opposites_1}}
+\caption{A $v_0$-oriented median graph $G$ and a vertex $u \in V$}
+\label{subfig:compute_opposites_1}
+\end{subfigure}
+\begin{subfigure}[b]{0.44\columnwidth}
+\centering
+\scalebox{0.8}{\input{tikz/compute_opposites_2}}
+\caption{Star graph $G_u$}
+\label{subfig:compute_opposites_2}
+\end{subfigure}
 
-For any POF $X$, there is at least one hypercube with signature $X$ such that its anti-basis $v$ verifies $\mathcal{E}^-(v) = X$ according to Lemma~\ref{le:pof_hypercube}. In summary, any maximal POF $X$ can be associated with an unique hypercube of signature $X$.
+\caption{Example of star graph $G_u$}
+\label{fig:compute_opposites}
+\end{figure}
+
+Any pair $(u,L)$ of $G$, where $L$ is a POF outgoing from $u$ in $G$, can be associated to a unique hypercube with signature $L$ and basis $u$. Thus, there is a natural bijection between (i) the POFs of $G_u$ (ii) the vertices of $G_u$ and (iii) the POFs $L$ of $G$ outgoing from $u$. Hence, $\card{V_u} = N_u$.
+
+We associate with any POF $L$ of $G_u$ the weight $\omega_u(L) = \varphi(u,L)$. We apply the algorithm evoked in Theorem~\ref{th:linear_simplex_teaser}. The opposite computed with that configuration correspond exactly to the labels $\opp_u(L)$: a POF $L'$ disjoint from $L$ and maximizing $\varphi(u,L')$ among all POFs outgoing from $u$. The running time of the algorithm is $O((d^3+\log \card{V_u})\card{V_u}) = O((d^3+\log n)N_u)$. Doing it for every vertex $u$ of $G$, we obtain all opposite labels of $G$ in $O(d^3+\log n)2^dn)$ as $\sum_{u \in V} N_u = 2^dn$ (Lemma~\ref{le:number_hypercubes}).
 \end{proof}
-
-Figure~\ref{subfig:maximal_pof} illustrates this proof with two squares $Q$ and $Q'$ with the same signature $\set{E_i,E_h}$. One can observe the appearance of a hypercube of larger dimension containing $Q$, giving evidence of the non-maximality of $X_Q$.
-
-The number of maximal hypercubes in a median graph is thus equal to the number of maximal POFs, which is itself at most linear in the number of vertices.
-
-\section{Proofs of Section~\ref{subsec:reduction}} \label{asec:subquadratic}
 
 \begin{lemma}\label{lem:guigui-1}
 Let $G$ be a median graph.
