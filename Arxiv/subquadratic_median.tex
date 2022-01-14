@@ -875,7 +875,7 @@ We say that a POF $L'$ is $L$-\emph{parallel} if, for any $E_j \in L'$, $L \cup 
 \label{def:pof_parallel}
 \end{definition}
 
-When $L'$ is a $L$-parallel POF, we have $L \cap L' = \emptyset$, otherwise $L \cup \set{E_j} = L$ for some $E_j \in L'$. Presented differently, a $L$-paralle POF is such that any of its $\Theta$-classes is parallel to at least one $\Theta$-class of $L$.
+When $L'$ is a $L$-parallel POF, we have $L \cap L' = \emptyset$, otherwise $L \cup \set{E_j} = L$ for some $E_j \in L'$. Presented differently, a $L$-parallel POF is such that any of its $\Theta$-classes is parallel to at least one $\Theta$-class of $L$.
 
 A combinatorial algorithm running in $\tilde{O}(2^{2d}n)$ which computes all labels $\varphi(u,L)$ was identified in~\cite{BeHa21}: we provide an overview of it. There is a crucial relationship between a label $\varphi(u,L)$ and the labels of (i) the anti-basis $u^+$ of the hypercube with basis $u$ and signature $L$ and (ii) the $L$-parallel POFs outgoing from $u^+$.
 
@@ -985,7 +985,7 @@ Let $R$ be a POF incoming to some vertex $u$ and $u^-$ be the basis of the hyper
 The label $\psi(u,R)$ is the maximum distance $d(u,v)$ we can obtain with a vertex $v$ satisfying the following properties:
 \begin{itemize}
 \item $m = m(u,v,v_0) \neq u$,
-\item the anti-ladder set of $m,v$ is $R$: $\overline{L}_{m,v} = R$.
+\item the anti-ladder set of $m,u$ is $R$: $\overline{L}_{m,u} = R$.
 \end{itemize}
 Equivalently, vertex $u^-$ is the penultimate milestone of pair $m,u$: $u^- = \overline{\pi}(m,u)$.
 \label{def:psi}

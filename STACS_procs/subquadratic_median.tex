@@ -317,7 +317,7 @@ We define the sets of pairwise orthogonal $\Theta$-classes.
 We say that a set of classes $X \subseteq \mathcal{E}$ is a {\em Pairwise Orthogonal Family (POF for short)} if for any pair $E_j,E_h \in X$, we have $E_j \perp E_h$.
 \end{definition}
 
-For any induced hypercube of $G$, its \textit{basis} (resp. \textit{anti-basis}) is the closest vertex (resp. farthest) to $v_0$ in it. All edges of the hypercube indicent to the basis are outgoing from it. Hypercubes are in bijection with pairs $(u,L)$, where $u$ is a vertex (the basis of the hypercube) and $L$ is a POF outgoing from $u$ (the \textit{signature} of the hypercube).
+For any induced hypercube of $G$, its \textit{basis} (resp. \textit{anti-basis}) is the closest vertex (resp. farthest) to $v_0$ in it. All edges of the hypercube indicent to the basis are outgoing from it in the $v_0$-orientation. Hypercubes are in bijection with pairs $(u,L)$, where $u$ is a vertex (the basis of the hypercube) and $L$ is a POF outgoing from $u$ (the \textit{signature} of the hypercube).
 
 The full version of this subsection is put in Appendix~\ref{asec:median}.
 
@@ -339,7 +339,7 @@ Due to page limit, the proofs in this Section are omitted.
 Given any undirected graph $G$, the vertices of the simplex graph $K(G)$ associated to $G$ represent the induced cliques (not necessarily maximal) of $G$. Two of these cliques are connected by an edge if they differ by exactly one element.
 
 \begin{definition}[Simplex graphs~\cite{BaVe89}]
-The simplex graph $K(G)=(V_K,E_K)$ of $G=(V,E)$ is made up of the vertex set $V_K = \set{C\subseteq V: C ~\emph{induced complete graph of}~ G}$ and the edge set $E_K = $\\ $\set{(C,C') : C,C' \in V_K, C \subsetneq C', \card{C'}-\card{C} = 1}$.
+The simplex graph $K(G)=(V_K,E_K)$ of $G=(V,E)$ is made up of the vertex set $V_K = \set{C\subseteq V: C ~\emph{induced complete graph of}~ G}$ and the edge set $E_K = \set{(C,C') : C,C' \in V_K, C \subsetneq C', \card{C'}-\card{C} = 1}$.
 \label{def:simplex}
 \end{definition}
 
@@ -370,7 +370,7 @@ Let $G$ be a median graph. Its \textit{crossing graph} $G^{\#}$ is the graph obt
 
 Restricted to simplex graphs, this transformation is the reverse of $K$: indeed, as stated in~\cite{KlMu02}, $G = K(G)^{\#}$. The clique number of $G^{\#}$ is exactly the dimension of median graph $G$. For example, the crossing graph of a cube-free median graph contains no triangle. Each simplex graph admits a central vertex ($v_0$ in Theorem~\ref{th:simplex}) which represents the empty clique of $G^{\#}$.
 
-Now, we focus on the problem of determining a diametral pair of a simplex graph $G$ and more generally all eccentricities. Observe that the distance between the central vertex $v_0$ and any vertex $u$ of $G$ can be deduced directly from the edges incoming into $u$. We state that $\sigma_{v_0,u} = \mathcal{E}^-(u)$. This is a consequence of Theorem~\ref{th:simplex}: all $\Theta$-classes of $\mathcal{E}^-(u)$ are adjacent to $v_0$, so $v_0$ is the basis of the hypercube with signature $\mathcal{E}^-(u)$ and anti-basis $u$. A shortest $(v_0,u)$-path is thus made up of edges of this hypercube. The distance $d(v_0,u)$ is equal to its dimension: $d(v_0,u) = \card{\mathcal{E}^-(u)}$.
+Now, we focus on the problem of determining a diametral pair of a simplex graph $G$ and more generally all eccentricities. Observe that the distance between the central vertex $v_0$ and any vertex $u$ of $G$ can be deduced directly from the set $\mathcal{E}^-(u)$ of $\Theta$-classes incoming into $u$. We state that $\sigma_{v_0,u} = \mathcal{E}^-(u)$. This is a consequence of Theorem~\ref{th:simplex}: all $\Theta$-classes of $\mathcal{E}^-(u)$ are adjacent to $v_0$, so $v_0$ is the basis of the hypercube with signature $\mathcal{E}^-(u)$ and anti-basis $u$. A shortest $(v_0,u)$-path is thus made up of edges of this hypercube. The distance $d(v_0,u)$ is equal to its dimension: $d(v_0,u) = \card{\mathcal{E}^-(u)}$.
 
 A key result is the fact that the central vertex $v_0$ of the simplex graph belongs to the interval $I(u,v)$ of any pair $u,v$ satisfying $d(u,v) = \ecc(u)$.
 
@@ -495,7 +495,7 @@ We say that a POF $L'$ is $L$-\emph{parallel} if, for any $E_j \in L'$, $L \cup 
 \label{def:pof_parallel}
 \end{definition}
 
-When $L'$ is a $L$-parallel POF, we have $L \cap L' = \emptyset$, otherwise $L \cup \set{E_j} = L$ for some $E_j \in L'$. Presented differently, a $L$-paralle POF is such that any of its $\Theta$-classes is parallel to at least one $\Theta$-class of $L$.
+When $L'$ is a $L$-parallel POF, we have $L \cap L' = \emptyset$, otherwise $L \cup \set{E_j} = L$ for some $E_j \in L'$. Presented differently, a $L$-parallel POF is such that any of its $\Theta$-classes is parallel to at least one $\Theta$-class of $L$.
 
 A combinatorial algorithm running in $\tilde{O}(2^{2d}n)$ which computes all labels $\varphi(u,L)$ was identified in~\cite{BeHa21}: we provide an overview of it. There is a crucial relationship between a label $\varphi(u,L)$ and the labels of (i) the anti-basis $u^+$ of the hypercube with basis $u$ and signature $L$ and (ii) the $L$-parallel POFs outgoing from $u^+$.
 
@@ -527,7 +527,7 @@ Given a vertex $u$ and a POF $L$ outgoing from $u$, let $\opp_u(L)$ denote a POF
 Let $u \in V$ and $L$ be a POF outgoing from $u$. Let $\opp_u(L)$ be one of the POF $L'$ outgoing from $u$, disjoint from $L$, which maximizes value $\varphi(u,L')$.
 \end{definition}
 
-%On simplex graphs, the opposite function provides in fact the $\opp$-labelings of vertex $v_0$: $\opp(X) = \opp_{v_0}(X)$. 
+On simplex graphs, the opposite function provides in fact the $\opp$-labelings of vertex $v_0$: $\opp(X) = \opp_{v_0}(X)$. 
 As all vertices belong to hypercubes with basis $v_0$, the ladder set $L_{v_0,v}$ for any vertex $v\in V$ is exactly the set $\mathcal{E}^-(v)$ of $\Theta$-classes incoming into $v$. So, value $\varphi(v_0,X)$ is the distance $d(v_0,v)$ between $v_0$ and the only vertex $v$ with ladder set $L_{v_0,v} = X$.
 
 On general median graphs, the opposite label $\opp_u(L)$ allows us to obtain the maximum distance $d(s,t)$ such that $u = m(s,t,v_0)$ and the ladder set $L_{u,s}$ is $L$.
@@ -541,9 +541,11 @@ Going further, given a vertex $u \in V$, the maximum distance $d(s,t)$ such that
 
 An algorithm was initially proposed to compute all labels $\opp_u(L)$ consisting in a brute force bounded tree search~\cite{BeHa21}. Its execution time was $\tilde{O}(2^{O(d\log d)}n)$, leading to the global same asymptotic running time (Lemma~\ref{le:slightly_super_exp}) for finding all eccentricities.
 
-Fortunately, the quasilinear time algorithm determining the eccentricities on simplex graphs (Theorem~\ref{th:linear_simplex_teaser}, Section~\ref{sec:simplex}) offers us the opportunity to decrease the exponential term to a simple exponential function $2^d$. For any $u \in V$, let $G_u =  G\left[V_u\right]$ be the \textit{star} graph of $u$, using a definition from~\cite{ChLaRa19}. Its vertex set $V_u$ is made up of the vertices belonging to a hypercube with basis $u$ in $G$. Graph $G_u$ is the induced subgraph of $G$ on vertex set $V_u$ (see Figure~\ref{fig:compute_opposites} for an example). Chepoi {\em et al.}~\cite{ChLaRa19} showed that graph $G_u$ is a gated/convex subgraph of $G$. This notion of star graph is essential for the proof of the following key theorem.
+Fortunately, the quasilinear time algorithm determining the eccentricities on simplex graphs (Theorem~\ref{th:linear_simplex_teaser}, Section~\ref{sec:simplex}) offers us the opportunity to decrease the exponential term to a simple exponential function $2^d$. For any $u \in V$, let $G_u =  G\left[V_u\right]$ be the \textit{star} graph of $u$, using a definition from~\cite{ChLaRa19}. Its vertex set $V_u$ is made up of the vertices belonging to a hypercube with basis $u$ in $G$. Graph $G_u$ is the induced subgraph of $G$ on vertex set $V_u$ (see Figure~\ref{fig:compute_opposites} for an example). Chepoi {\em et al.}~\cite{ChLaRa19} showed that graph $G_u$ is a gated/convex subgraph of $G$. 
+%This notion of star graph is essential for the proof of the following key theorem.
+Applying the algorithm of Theorem~\ref{th:linear_simplex_teaser} on the simplex graph $G_u$ provides us with the opposite labels of $u$.
 
-\begin{theorem}[Computation of labels \opp]
+\begin{theorem}[\ref{th:compute_opp}, Computation of labels \opp]
 There is a combinatorial algorithm which determines all labels $\opp_u(L)$ in $\tilde{O}(2^dn)$. 
 \label{th:compute_opp_teaser}
 \end{theorem}
@@ -581,7 +583,7 @@ Let $R$ be a POF incoming to some vertex $u$ and $u^-$ be the basis of the hyper
 The label $\psi(u,R)$ is the maximum distance $d(u,v)$ we can obtain with a vertex $v$ satisfying the following properties:
 \begin{itemize}
 \item $m = m(u,v,v_0) \neq u$,
-\item the anti-ladder set of $m,v$ is $R$: $\overline{L}_{m,v} = R$.
+\item the anti-ladder set of $m,u$ is $R$: $\overline{L}_{m,u} = R$.
 \end{itemize}
 Equivalently, vertex $u^-$ is the penultimate milestone of pair $m,u$: $u^- = \overline{\pi}(m,u)$.
 \label{def:psi}
